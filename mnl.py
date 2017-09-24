@@ -2,14 +2,20 @@
 
 """
 import tensorflow as tf
+import numpy as np
 from tensorflow.python.ops.nn_impl import _compute_sampled_logits, _sum_rows, sigmoid_cross_entropy_with_logits
 from tensorflow.python.ops import nn_ops, embedding_ops
+
+
+def one_hot(y, num_classes):
+    return np.eye(num_classes)[y[:, 0]]
 
 
 def graph(dim, num_classes, num_train_points):
     # tf Graph Input
     x = tf.placeholder(tf.float32, [None, dim])  # mnist data image of shape 28*28=784
-    y = tf.placeholder(tf.float32, [None, num_classes])  # 0-9 digits recognition => 10 classes
+    y = tf.placeholder(tf.int64, [None, 1])  # 0-9 digits recognition => 10 classes
+    y_one_hot = tf.placeholder(tf.float32, [None, num_classes])  # 0-9 digits recognition => 10 classes
     idx = tf.placeholder(tf.int64, [None, 1])  # data point indices
 
     # Set model weights
@@ -17,28 +23,31 @@ def graph(dim, num_classes, num_train_points):
     b = tf.Variable(tf.zeros([num_classes]))
     u = tf.Variable(tf.ones([num_train_points]) * tf.log(float(num_classes)))  # Initialize u_i = log(K)
 
-    variables = [x, y, W, b, idx, u]
+    variables = [x, y, y_one_hot, W, b, idx, u]
 
     return variables
 
 
-def get_cost(cost_name, x, y, W, b, idx, u):
-    if cost_name == 'softmax': return cost_softmax(x, y, W, b, idx, u)
+def get_cost(cost_name, x, y, y_one_hot, W, b, idx, u):
+    if cost_name == 'softmax': return cost_softmax(x, y_one_hot, W, b)
 
 
-def cost_softmax(x, y, W, b, idx, u):
+def cost_softmax(x, y_one_hot, W, b):
     # Softmax without sampling
     pred = tf.nn.softmax(tf.matmul(x, W) + b)
-    cost = tf.reduce_mean(-tf.reduce_sum(y * tf.log(pred), reduction_indices=1))
+    cost = tf.reduce_mean(-tf.reduce_sum(y_one_hot * tf.log(pred), reduction_indices=1))
     return cost
 
 
-def error(x, y, W, b, data):
+def error(x, y_one_hot, W, b, data, num_classes):
     pred_softmax = tf.nn.softmax(tf.matmul(x, W) + b)
-    wrong_prediction = tf.not_equal(tf.argmax(pred_softmax, 1), tf.argmax(y, 1))
+    wrong_prediction = tf.not_equal(tf.argmax(pred_softmax, 1), tf.argmax(y_one_hot, 1))
     # Calculate accuracy
     error = tf.reduce_mean(tf.cast(wrong_prediction, tf.float32))
-    return error.eval({x: data.x, y: data.y})
+    return error.eval({x: data.x, y_one_hot: one_hot(data.y, num_classes)})
+
+
+
 
     # def stable_logistic(x):
     #     """Calculates log(1+exp(x)) in a stable way.

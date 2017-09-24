@@ -43,15 +43,15 @@ def loadLIBSVMdata(file_path, train_test_split):
 def load_data(dataset_name, train_test_split):
     if dataset_name == 'mnist':
         from tensorflow.examples.tutorials.mnist import input_data
-        mnist = input_data.read_data_sets("/tmp/data/", one_hot=True)
-        train = MNLDataset(mnist.train.images, mnist.train.labels) #[:,None]
-        test = MNLDataset(mnist.test.images, mnist.test.labels) #[:,None]
+        mnist = input_data.read_data_sets("/tmp/data/", one_hot=False)
+        train = MNLDataset(mnist.train.images, mnist.train.labels[:,None]) #
+        test = MNLDataset(mnist.test.images, mnist.test.labels[:,None]) #[:,None]
     if dataset_name in {'Bibtex'}:
         file_path = '/Users/francoisfagan/Documents/UnbiasedSoftmaxData/LIBSVM/' + dataset_name + '.txt'
         train, test = loadLIBSVMdata(file_path, train_test_split)
 
     dim = train.x.shape[1]
-    num_classes = train.y.shape[1]#int(max(train.y)) + 1
+    num_classes = int(max(train.y)) + 1 #train.y.shape[1]#
     num_train_points = train.x.shape[0]
     return [train, test, dim, num_classes, num_train_points]
 

@@ -34,5 +34,5 @@ variables = graph(dim, num_classes, num_train_points)
 cost = get_cost(cost_name, *variables)
 record = run(train, test, num_train_points, *variables, cost,
                                                learning_rate, batch_size, num_epochs_record_cost, num_repeat,
-                                               training_epochs, error)
+                                               training_epochs, error, num_classes)
 pickle.dump(record, open(cost_name + '_' + dataset_name + '.p', 'wb'))
