@@ -8,7 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 cost_name = 'softmax'
-dataset_name = 'mnist'
+dataset_name = 'Delicious'
 
 record = pickle.load( open(cost_name + '_' + dataset_name + '.p', 'rb'))
 train_mean = np.mean(record['train_error: '], axis=0)

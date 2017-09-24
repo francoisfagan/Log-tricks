@@ -27,7 +27,7 @@ def loadLIBSVMdata(file_path, train_test_split):
     # and if multiple y values, take the first one
     y = data[1]
     y_not_empty = [i for i, y_val in enumerate(y) if y_val != ()]
-    y = np.array([y[i][0] for i in y_not_empty])
+    y = np.array([int(y[i][0]) for i in y_not_empty])[:, None]
     x = data[0].toarray()[y_not_empty, :]
 
     # Find point to split training and test sets
@@ -46,12 +46,12 @@ def load_data(dataset_name, train_test_split):
         mnist = input_data.read_data_sets("/tmp/data/", one_hot=False)
         train = MNLDataset(mnist.train.images, mnist.train.labels[:,None]) #
         test = MNLDataset(mnist.test.images, mnist.test.labels[:,None]) #[:,None]
-    if dataset_name in {'Bibtex'}:
+    if dataset_name in {'Bibtex', 'Delicious', 'Eurlex'}:
         file_path = '/Users/francoisfagan/Documents/UnbiasedSoftmaxData/LIBSVM/' + dataset_name + '.txt'
         train, test = loadLIBSVMdata(file_path, train_test_split)
 
     dim = train.x.shape[1]
-    num_classes = int(max(train.y)) + 1 #train.y.shape[1]#
+    num_classes = int(max(train.y)) + 1
     num_train_points = train.x.shape[0]
     return [train, test, dim, num_classes, num_train_points]
 
