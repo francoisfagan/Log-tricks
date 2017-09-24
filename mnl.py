@@ -19,7 +19,7 @@ def graph(dim, num_classes, num_train_points):
 
     variables = [x, y, W, b, idx, u]
 
-    return variables #
+    return variables
 
 
 def get_cost(cost_name, x, y, W, b, idx, u):
