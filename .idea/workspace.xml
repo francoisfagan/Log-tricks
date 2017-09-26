@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d932a138-bc3e-4836-89d0-79e375b2c988" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/softmax_Bibtex.p" afterPath="$PROJECT_DIR$/softmax_Bibtex.p" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/softmax_Bibtex.p" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/softmax_Delicious.p" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/softmax_mnist.p" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.ipynb_checkpoints/TF Experiments-checkpoint.ipynb" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/TF Experiments-checkpoint.ipynb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TF Experiments.ipynb" afterPath="$PROJECT_DIR$/TF Experiments.ipynb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/load_data.py" afterPath="$PROJECT_DIR$/load_data.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mnl.py" afterPath="$PROJECT_DIR$/mnl.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline.py" afterPath="$PROJECT_DIR$/pipeline.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plot_results.py" afterPath="$PROJECT_DIR$/plot_results.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run.py" afterPath="$PROJECT_DIR$/run.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,8 +25,8 @@
       <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="21" column="25" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="25" />
+            <state relative-caret-position="238">
+              <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
               <folding>
                 <element signature="e#212#235#0" expanded="true" />
               </folding>
@@ -28,25 +34,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plot_results.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/plot_results.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-              <folding>
-                <element signature="e#44#57#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="run.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="run.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/run.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="884">
-              <caret line="52" column="26" lean-forward="false" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
+            <state relative-caret-position="306">
+              <caret line="64" column="80" lean-forward="true" selection-start-line="64" selection-start-column="80" selection-end-line="64" selection-end-column="80" />
               <folding>
-                <element signature="e#34#57#0" expanded="true" />
+                <element signature="e#33#56#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -55,10 +49,18 @@
       <file leaf-file-name="mnl.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mnl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="34" column="36" lean-forward="false" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+            <state relative-caret-position="285">
+              <caret line="207" column="12" lean-forward="false" selection-start-line="207" selection-start-column="12" selection-end-line="207" selection-end-column="12" />
               <folding>
                 <element signature="e#83#106#0" expanded="true" />
+                <element signature="e#466#603#0" expanded="false" />
+                <element signature="e#1401#1716#0" expanded="false" />
+                <element signature="e#1805#2309#0" expanded="false" />
+                <element signature="e#2354#2531#0" expanded="false" />
+                <element signature="e#2635#3898#0" expanded="false" />
+                <element signature="e#3969#5260#0" expanded="false" />
+                <element signature="e#5319#6556#0" expanded="false" />
+                <element signature="e#6615#7599#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -67,11 +69,9 @@
       <file leaf-file-name="load_data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/load_data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="48" column="54" lean-forward="false" selection-start-line="48" selection-start-column="54" selection-end-line="48" selection-end-column="54" />
-              <folding>
-                <element signature="e#43#61#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="952">
+              <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -95,6 +95,7 @@
       <find>num_train_points</find>
       <find>num_classes</find>
       <find>y</find>
+      <find>num_epochs_record_cost</find>
     </findStrings>
     <replaceStrings>
       <replace>sampled_loss</replace>
@@ -114,18 +115,19 @@
         <option value="$PROJECT_DIR$/mnl_costs.py" />
         <option value="$PROJECT_DIR$/word2vec.py" />
         <option value="$PROJECT_DIR$/load.py" />
-        <option value="$PROJECT_DIR$/run.py" />
-        <option value="$PROJECT_DIR$/mnl.py" />
-        <option value="$PROJECT_DIR$/load_data.py" />
-        <option value="$PROJECT_DIR$/pipeline.py" />
         <option value="$PROJECT_DIR$/plot_results.py" />
+        <option value="$PROJECT_DIR$/load_data.py" />
+        <option value="$PROJECT_DIR$/run.py" />
+        <option value="$PROJECT_DIR$/pipeline.py" />
+        <option value="$PROJECT_DIR$/mnl.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="332" />
     <option name="y" value="23" />
-    <option name="width" value="1435" />
-    <option name="height" value="873" />
+    <option name="width" value="1526" />
+    <option name="height" value="1052" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -192,7 +194,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.plot_results">
+  <component name="RunManager" selected="Python.pipeline">
     <configuration name="pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -269,8 +271,8 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python.plot_results" />
-        <item index="1" class="java.lang.String" itemvalue="Python.pipeline" />
+        <item index="0" class="java.lang.String" itemvalue="Python.pipeline" />
+        <item index="1" class="java.lang.String" itemvalue="Python.plot_results" />
         <item index="2" class="java.lang.String" itemvalue="Python.u_dist" />
         <item index="3" class="java.lang.String" itemvalue="Python.word2vec_basic" />
       </list>
@@ -296,7 +298,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24390244" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.309613" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.309613" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -336,7 +338,7 @@
         <state relative-caret-position="884">
           <caret line="53" column="64" lean-forward="false" selection-start-line="53" selection-start-column="64" selection-end-line="53" selection-end-column="64" />
           <folding>
-            <element signature="e#34#57#0" expanded="true" />
+            <element signature="e#33#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -346,7 +348,7 @@
         <state relative-caret-position="782">
           <caret line="47" column="73" lean-forward="false" selection-start-line="47" selection-start-column="73" selection-end-line="47" selection-end-column="73" />
           <folding>
-            <element signature="e#43#61#0" expanded="true" />
+            <element signature="e#43#61#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -357,6 +359,14 @@
           <caret line="21" column="22" lean-forward="false" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
           <folding>
             <element signature="e#83#106#0" expanded="true" />
+            <element signature="e#466#603#0" expanded="false" />
+            <element signature="e#1401#1716#0" expanded="false" />
+            <element signature="e#1805#2309#0" expanded="false" />
+            <element signature="e#2354#2531#0" expanded="false" />
+            <element signature="e#2635#3898#0" expanded="false" />
+            <element signature="e#3969#5260#0" expanded="false" />
+            <element signature="e#5319#6556#0" expanded="false" />
+            <element signature="e#6615#7599#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -404,52 +414,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mnl.py">
+    <entry file="file://$PROJECT_DIR$/plot_results.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="34" column="36" lean-forward="false" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+        <state relative-caret-position="357">
+          <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
-            <element signature="e#83#106#0" expanded="true" />
+            <element signature="e#44#57#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/load_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="48" column="54" lean-forward="false" selection-start-line="48" selection-start-column="54" selection-end-line="48" selection-end-column="54" />
-          <folding>
-            <element signature="e#43#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="52" column="26" lean-forward="false" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
-          <folding>
-            <element signature="e#34#57#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="952">
+          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="21" column="25" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="25" />
+        <state relative-caret-position="238">
+          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
           <folding>
             <element signature="e#212#235#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/plot_results.py">
+    <entry file="file://$PROJECT_DIR$/mnl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="17" lean-forward="false" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
+        <state relative-caret-position="285">
+          <caret line="207" column="12" lean-forward="false" selection-start-line="207" selection-start-column="12" selection-end-line="207" selection-end-column="12" />
           <folding>
-            <element signature="e#44#57#0" expanded="true" />
+            <element signature="e#83#106#0" expanded="true" />
+            <element signature="e#466#603#0" expanded="false" />
+            <element signature="e#1401#1716#0" expanded="false" />
+            <element signature="e#1805#2309#0" expanded="false" />
+            <element signature="e#2354#2531#0" expanded="false" />
+            <element signature="e#2635#3898#0" expanded="false" />
+            <element signature="e#3969#5260#0" expanded="false" />
+            <element signature="e#5319#6556#0" expanded="false" />
+            <element signature="e#6615#7599#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="64" column="80" lean-forward="true" selection-start-line="64" selection-start-column="80" selection-end-line="64" selection-end-column="80" />
+          <folding>
+            <element signature="e#33#56#0" expanded="true" />
           </folding>
         </state>
       </provider>

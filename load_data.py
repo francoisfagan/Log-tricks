@@ -41,13 +41,14 @@ def loadLIBSVMdata(file_path, train_test_split):
 
 
 def load_data(dataset_name, train_test_split):
+    print('Loading data')
     if dataset_name == 'mnist':
         from tensorflow.examples.tutorials.mnist import input_data
         mnist = input_data.read_data_sets("/tmp/data/", one_hot=False)
         train = MNLDataset(mnist.train.images, mnist.train.labels[:,None]) #
         test = MNLDataset(mnist.test.images, mnist.test.labels[:,None]) #[:,None]
     if dataset_name in {'Bibtex', 'Delicious', 'Eurlex'}:
-        file_path = '/Users/francoisfagan/Documents/UnbiasedSoftmaxData/LIBSVM/' + dataset_name + '.txt'
+        file_path = '../UnbiasedSoftmaxData/LIBSVM/' + dataset_name + '.txt'
         train, test = loadLIBSVMdata(file_path, train_test_split)
 
     dim = train.x.shape[1]

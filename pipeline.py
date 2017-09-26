@@ -12,14 +12,15 @@ from run import run
 import pickle
 
 # Parameters (in the future can pass these in from the command line)
-learning_rate = 0.01
+learning_rate = 0.0001
 train_test_split = 0.7
-training_epochs = 100
+training_epochs = 10
 batch_size = 100
 num_epochs_record_cost = 10
+num_sampled = 5
 num_repeat = 1
-cost_name = 'softmax'
-dataset_name = 'Delicious' #'Bibtex' #'mnist' #
+cost_name = 'lt' # 'sampled_softmax'  #  'softmax'  #'ove' # 'nce' #
+dataset_name = 'mnist'  # 'Bibtex' # 'Delicious' #
 run_mnl = True
 run_word2vec = False
 assert (run_mnl != run_word2vec)
@@ -31,8 +32,8 @@ elif run_word2vec:
 
 train, test, dim, num_classes, num_train_points = load_data(dataset_name, train_test_split)
 variables = graph(dim, num_classes, num_train_points)
-cost = get_cost(cost_name, *variables)
-record = run(train, test, num_train_points, *variables, cost,
-                                               learning_rate, batch_size, num_epochs_record_cost, num_repeat,
-                                               training_epochs, error, num_classes)
-pickle.dump(record, open(cost_name + '_' + dataset_name + '.p', 'wb'))
+cost = get_cost(cost_name, num_classes, num_sampled, *variables)
+results = run(train, test, num_train_points, cost,
+              learning_rate, batch_size, num_epochs_record_cost, num_repeat,
+              training_epochs, error, num_classes, cost_name, *variables)
+pickle.dump(results, open('./Results/' + cost_name + '_' + dataset_name + '.p', 'wb'))
