@@ -2,10 +2,24 @@
 
 import tensorflow as tf
 import numpy as np
+from mnl import u_lower_bound
+from tensorflow.python.ops import nn_ops, embedding_ops
+from tensorflow.python.ops.nn_impl import _compute_sampled_logits, _sum_rows, sigmoid_cross_entropy_with_logits
 
 
 def one_hot(y, num_classes):
     return np.eye(num_classes)[y[:, 0]]
+
+
+# def sample_classes(num_classes, num_sampled, batch_size, batch_ys):
+#     # Samples classes excluding the true label
+#     # First sample random classes from the set [0, num_classes - 1]
+#     # then shift them by 1 + true_label to the set [1 + true_label, num_classes + true_label]
+#     # and finally take mod num_classes to the set [0, true_label - 1] union [true_label, num_classes]
+#     samples = np.random.randint(num_classes - 1, size=(batch_size, num_sampled))
+#     repeated_batch_ys = np.tile(batch_ys, (1, num_sampled))
+#     samples = np.mod(samples + repeated_batch_ys + 1, num_classes)
+#     return samples
 
 
 def measure_u(train, num_classes, W, b, u):
@@ -34,9 +48,11 @@ def measure_u(train, num_classes, W, b, u):
 
 def run(train, test, num_train_points, cost,
         learning_rate, batch_size, num_epochs_record_cost, num_repeat, training_epochs, error, num_classes, cost_name,
-        x, y, y_one_hot, W, b, idx, u):
+        num_sampled,
+        x, y, y_one_hot, W, b, idx, u, s_c):
     optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
-    clip_u = u.assign(tf.maximum(0., u))
+    u_clip = u.assign(tf.maximum(0., u))
+    # u_assign_lower_bound = u.assign(tf.maximum(u_lower_bound(x, y, W, b, s_c), u))
     train_error = []  # Cost list of lists of dim: [num_repeat] x [num_epochs_record_cost]
     test_error = []  # Cost list of lists of dim: [num_repeat] x [num_epochs_record_cost]
     epochs_recorded = []  # Cost list of lists of dim: [num_repeat] x [num_epochs_record_cost]
@@ -63,28 +79,38 @@ def run(train, test, num_train_points, cost,
                 for i_batch in range(num_batches):
                     # Get next batch
                     batch_xs, batch_ys, batch_idx = train.next_batch(batch_size)
+                    sampled_classes = np.random.randint(num_classes, size=num_sampled)
+
+                    # sess.run(tf.scatter_update(u, tf.squeeze(idx), tf.squeeze(u_lower_bound(x, y, W, b, idx, u, s_c))),
+                    #          feed_dict={x: batch_xs,
+                    #                     y: batch_ys,
+                    #                     idx: batch_idx,
+                    #                     s_c: sampled_classes}
+                    #          )
 
                     # Run optimization op (backprop) and cost op (to get loss value)
-                    if cost_name == 'softmax':
-                        _, c = sess.run([optimizer, cost],
-                                        feed_dict={x: batch_xs,
-                                                   y_one_hot: one_hot(batch_ys, num_classes),
-                                                   idx: batch_idx})
-                    else:
+                    if cost_name != 'softmax':
                         _, c = sess.run([optimizer, cost],
                                         feed_dict={x: batch_xs,
                                                    y: batch_ys,
+                                                   idx: batch_idx,
+                                                   s_c: sampled_classes}
+                                        )
+                    else:
+                        _, c = sess.run([optimizer, cost],
+                                        feed_dict={x: batch_xs,
+                                                   y_one_hot: one_hot(batch_ys, num_classes),
                                                    idx: batch_idx})
 
                     # Average loss over the batch
                     avg_cost += np.mean(c) / num_batches
 
                     # Keep u positive
-                    sess.run(clip_u)
+                    sess.run(u_clip)
 
                 # Display logs per epoch step
                 if (epoch + 1) % (training_epochs // num_epochs_record_cost) == 0:
-                    measure_u(train, num_classes, W, b, u)
+                    # measure_u(train, num_classes, W, b, u)
                     train_error[-1].append(error(x, y_one_hot, W, b, train, num_classes))
                     test_error[-1].append(error(x, y_one_hot, W, b, test, num_classes))
                     epochs_recorded[-1].append(epoch)
