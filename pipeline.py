@@ -14,13 +14,13 @@ import pickle
 # Parameters (in the future can pass these in from the command line)
 learning_rate = 0.0001
 train_test_split = 0.7
-training_epochs = 10
+training_epochs = 1000
 batch_size = 100
 num_epochs_record_cost = 10
 num_sampled = 5
-num_repeat = 1
-cost_name = 'nce' # 'lt' #'sampled_softmax'  #  'softmax'  #'ove' #
-dataset_name = 'mnist'  # 'Bibtex' # 'Delicious' #
+num_repeat = 5
+cost_name = 'softmax_IS'  #'lt'  # 'IS' # 'softmax'  #'sampled_softmax'  # 'ove' #'nce' #
+dataset_name = 'Bibtex'  # 'Delicious'  # 'mnist'  # 'Euler' #
 run_mnl = True
 run_word2vec = False
 assert (run_mnl != run_word2vec)

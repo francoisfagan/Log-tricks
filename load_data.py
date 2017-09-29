@@ -5,8 +5,8 @@ from sklearn.datasets import load_svmlight_file
 
 class MNLDataset():
     def __init__(self, x, y):
-        self.x = x
-        self.y = y
+        self.x = np.array(x)  # Dimensions [num_examples] x [dim]
+        self.y = np.array(y)  # Dimensions [num_examples] x [1]
         self.num_examples = x.shape[0]
         self.batch_index = 0
 

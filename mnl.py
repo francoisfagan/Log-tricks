@@ -432,22 +432,73 @@ def u_lower_bound(x, y, W, b, idx, u, s_c):
 
 
 class LogTricks:
-
     def __init__(self, dim, num_classes, num_train_points):
-        self.W = np.zeros((dim, num_classes))
-        self.u = np.zeros(num_train_points)
+        self.W = np.zeros((dim, num_classes))  # np.array of dimensions [dim] x [num_classes]
+        self.u = np.zeros(num_train_points)  # np.array of dimensions [num_train_points]
+        self.num_classes = num_classes
 
-
-    def sgd_update(self, x, y, idx, s_c, learning_rate):
-        """
+    def sgd_update(self, x, y, idx, sampled_classes, learning_rate, u_equals_bound):
+        """ Performs sgd update of variables
 
         :param x: np.array of dimensions [batch_size] x [dim]
         :param y: np.array of dimensions [batch_size] x [1]
         :param idx: np.array of dimensions [batch_size] x [1]
-        :param s_c:
-        :param learning_rate:
+        :param sampled_classes: np.array of dimensions [num_sampled]
+        :param learning_rate: scalar
         :return:
         """
 
-        labels =
-        logits =
+        # Transform dimensions
+        idx_array = idx.reshape(-1)  # Change from dimension [batch_size] x [1] to dimension [batch_size]
+        y_array = y.reshape(-1)  # Change from dimension [batch_size] x [1] to dimension [batch_size]
+
+        # Find batch_size and num_sampled
+        batch_size = len(idx_array)
+        num_sampled = len(sampled_classes)
+
+        # Calculate logit_difference = x_i^\top(w_k-w_{y_i}) for all i in idx and k in sampled_classes
+        logits_sampled = x.dot(self.W[:, sampled_classes])  # Dimensions [batch_size] x [num_sampled]
+        logits_true = np.array([np.dot(x[i, :], self.W[:, y_array[i]])
+                                for i in range(batch_size)])  # Dimensions [batch_size]
+        logit_true_matrix = np.tile(logits_true[:, None], (1, num_sampled))  # Dimensions [batch_size] x [num_sampled]
+        logit_diff = logits_sampled - logit_true_matrix  # Dimensions [batch_size] x [num_sampled]
+
+        # Calculate whether the sampled labels coincide with the true labels
+        # labels[i,j] = I(y[i] == s_c[j])
+        # Dimensions [batch_size] x [num_sampled]
+        labels = (np.tile(sampled_classes, (batch_size, 1)) == np.tile(y, (1, num_sampled))).astype('float')
+        # Remove sample from count if it equals the true label
+        num_non_true_sampled = np.sum(1 - labels, axis=1)  # Dimensions [batch_size]
+
+        # Update u
+        logit_diff_max = np.max(logit_diff, axis=1)  # Dimensions [batch_size]
+        logit_diff_max_matrix = np.tile(logit_diff_max[:, None],
+                                        (1, num_sampled))  # Dimensions [batch_size] x [num_sampled]
+        u_bound = logit_diff_max + np.log(np.exp(-logit_diff_max) +
+                                          np.sum((1 - labels) * np.exp((logit_diff - logit_diff_max_matrix)),
+                                                 axis=1))  # Dimensions [batch_size]
+        self.u[idx_array] = np.maximum(self.u[idx_array], u_bound)  # Dimensions [batch_size]
+        if u_equals_bound:
+            self.u[idx_array] = u_bound  # Dimensions [batch_size]
+
+        # SGD step
+        scaling_factor = float(self.num_classes) / num_non_true_sampled  # Dimensions [batch_size]
+        scaling_factor_matrix = np.tile(scaling_factor[:, None],
+                                        (1, num_sampled))  # Dimensions [batch_size] x [num_sampled]
+        u_idx_matrix = np.tile(self.u[idx_array][:, None], (1, num_sampled))  # Dimensions [batch_size] x [num_sampled]
+        factor = scaling_factor_matrix * (1 - labels) * np.exp(
+            logit_diff - u_idx_matrix)  # Dimensions [batch_size] x [num_sampled]
+        u_grad = 1 - np.exp(-self.u[idx_array]) - np.sum(factor, axis=1)  # Dimensions [batch_size]
+        w_sample_grad = np.dot(factor.T, x)  # Dimensions [num_sampled] x [dim]
+        w_true_grad = -x * np.sum(factor, axis=1)[:, None]  # Dimensions [batch_size] x [dim]
+        # https://stackoverflow.com/questions/5795700/multiply-numpy-array-of-scalars-by-array-of-vectors
+
+        # Update variables
+        self.u[idx_array] -= learning_rate * u_grad
+        self.W[:, sampled_classes] -= learning_rate * w_sample_grad.T
+        self.W[:, y_array] -= learning_rate * w_true_grad.T
+
+    def lt_error(self, data):
+        pred = np.argmax(np.dot(data.x, self.W), axis=1)
+        mean_error = np.mean(data.y.reshape(-1) != pred)
+        return mean_error

@@ -2,7 +2,7 @@
 
 import tensorflow as tf
 import numpy as np
-from mnl import u_lower_bound
+from mnl import *
 from tensorflow.python.ops import nn_ops, embedding_ops
 from tensorflow.python.ops.nn_impl import _compute_sampled_logits, _sum_rows, sigmoid_cross_entropy_with_logits
 
@@ -50,14 +50,19 @@ def run(train, test, num_train_points, cost,
         learning_rate, batch_size, num_epochs_record_cost, num_repeat, training_epochs, error, num_classes, cost_name,
         num_sampled,
         x, y, y_one_hot, W, b, idx, u, s_c):
-    optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
-    u_clip = u.assign(tf.maximum(0., u))
-    # u_assign_lower_bound = u.assign(tf.maximum(u_lower_bound(x, y, W, b, s_c), u))
     train_error = []  # Cost list of lists of dim: [num_repeat] x [num_epochs_record_cost]
     test_error = []  # Cost list of lists of dim: [num_repeat] x [num_epochs_record_cost]
     epochs_recorded = []  # Cost list of lists of dim: [num_repeat] x [num_epochs_record_cost]
+
+
     for repeat in range(num_repeat):
         print('\nRepetition: ', repeat)
+
+        if cost_name in {'lt', 'IS', 'softmax_IS'}:
+            lt = LogTricks(train.x.shape[1], num_classes, num_train_points)
+        else:
+            optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
+
         train_error.append([])
         test_error.append([])
         epochs_recorded.append([])
@@ -79,17 +84,15 @@ def run(train, test, num_train_points, cost,
                 for i_batch in range(num_batches):
                     # Get next batch
                     batch_xs, batch_ys, batch_idx = train.next_batch(batch_size)
-                    sampled_classes = np.random.randint(num_classes, size=num_sampled)
-
-                    # sess.run(tf.scatter_update(u, tf.squeeze(idx), tf.squeeze(u_lower_bound(x, y, W, b, idx, u, s_c))),
-                    #          feed_dict={x: batch_xs,
-                    #                     y: batch_ys,
-                    #                     idx: batch_idx,
-                    #                     s_c: sampled_classes}
-                    #          )
+                    sampled_classes = np.random.choice(num_classes, size=num_sampled, replace=False)
+                    if cost_name == 'softmax_IS':
+                        sampled_classes = np.arange(num_classes)
 
                     # Run optimization op (backprop) and cost op (to get loss value)
-                    if cost_name != 'softmax':
+                    if cost_name in {'lt', 'IS', 'softmax_IS'}:
+                        u_equals_bound = (cost_name in {'IS', 'softmax_IS'})
+                        lt.sgd_update(batch_xs, batch_ys, batch_idx, sampled_classes, learning_rate, u_equals_bound)
+                    elif cost_name != 'softmax':
                         _, c = sess.run([optimizer, cost],
                                         feed_dict={x: batch_xs,
                                                    y: batch_ys,
@@ -102,22 +105,24 @@ def run(train, test, num_train_points, cost,
                                                    y_one_hot: one_hot(batch_ys, num_classes),
                                                    idx: batch_idx})
 
-                    # Average loss over the batch
-                    avg_cost += np.mean(c) / num_batches
-
-                    # Keep u positive
-                    sess.run(u_clip)
-
                 # Display logs per epoch step
                 if (epoch + 1) % (training_epochs // num_epochs_record_cost) == 0:
-                    # measure_u(train, num_classes, W, b, u)
-                    train_error[-1].append(error(x, y_one_hot, W, b, train, num_classes))
-                    test_error[-1].append(error(x, y_one_hot, W, b, test, num_classes))
+                    print('Epoch:', '%04d' % (epoch + 1))
+                    if cost_name in {'lt', 'IS', 'softmax_IS'}:
+                        epoch_train_error = lt.lt_error(train)
+                        epoch_test_error = lt.lt_error(test)
+                    else:
+                        epoch_train_error = error(x, y_one_hot, W, b, train, num_classes)
+                        epoch_test_error = error(x, y_one_hot, W, b, test, num_classes)
+
+                    print(
+                        ' Test error:', epoch_test_error,
+                        ' Train error:', epoch_train_error,
+                    )
+                    train_error[-1].append(epoch_train_error)
+                    test_error[-1].append(epoch_test_error)
                     epochs_recorded[-1].append(epoch)
-                    print('Epoch:', '%04d' % (epoch + 1),
-                          'ave_cost', avg_cost,
-                          ' Test error:', test_error[-1][-1],
-                          ' Train error:', train_error[-1][-1], )
+                    # measure_u(train, num_classes, W, b, u)
 
             print('Optimization Finished!')
 
