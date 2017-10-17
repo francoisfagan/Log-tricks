@@ -17,12 +17,12 @@ t0 = time.time()
 # Parameters (in the future can pass these in from the command line)
 learning_rate = 0.0001
 epochs = 10
-batch_size = 1
+batch_size = 100
 num_epochs_record = 10
 num_sampled = 5
 num_repeat = 1
 sgd_name = 'softmax'  #'lt'  # 'IS' # 'softmax'  #'sampled_softmax'  # 'ove' #'nce' #
-dataset_name = 'Delicious'  #'Eurlex' #'Bibtex'  #  'mnist'  #
+dataset_name = 'Bibtex'  #'Eurlex' # 'Delicious'  #  'mnist'  #
 run_mnl = True
 run_word2vec = False
 assert (run_mnl != run_word2vec)
@@ -32,6 +32,5 @@ results = run(train, test, learning_rate, batch_size, num_epochs_record, num_rep
 # pickle.dump(results, open('./Results/' + sgd_name + '_' + dataset_name + '.p', 'wb'))
 
 t1 = time.time()
-
 total = t1-t0
 print(total)

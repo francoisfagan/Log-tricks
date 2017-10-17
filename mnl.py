@@ -2,13 +2,14 @@
 
 """
 import numpy as np
-from scipy.sparse import csr_matrix
+from scipy.sparse import csr_matrix, csc_matrix, coo_matrix, find
 
 
 class SGD:
     def __init__(self, dim, num_classes, num_train_points):
-        self.W = np.zeros((dim, num_classes))  # sparse matrix of dimensions [dim] x [num_classes]
-        self.u = np.zeros(num_train_points)  # np.array of dimensions [num_train_points]
+        self.W = np.zeros((dim, num_classes))  # Dimension: [num_classes] x [dim]
+        # self.W = csc_matrix((dim, num_classes))  # Dimension: [num_classes] x [dim]
+        self.u = np.zeros(num_train_points)  # Dimension: [num_train_points]
         self.num_classes = num_classes
 
     def update(self, x, y, idx, sampled_classes, learning_rate):
@@ -34,7 +35,18 @@ class Softmax(SGD):
         The dimensions of the matrices below is [batch_size] x [num_classes] unless otherwise stated
         """
 
-        logits = x.dot(self.W)
+        logits = x * self.W
+        #logits = logits.toarray()
+        # print(type(logits))
+        # print('x.shape', x.shape)
+        # print('self.W.shape', self.W.shape)
+        # print('x', x)
+        # print('W', self.W)
+        # print('logits.shape', logits.shape)
+        # print('printing logits: ', logits)
+        # logits = logits.toarray()
+        # print(type(logits))
+        # print(logits.shape)
 
         # Log-max trick to make numerically stable
         logits = logits - np.max(logits, axis=1)[:, None]
@@ -47,8 +59,13 @@ class Softmax(SGD):
         exp_logits[[list(range(len(y))), y]] -= 1.0
 
         # Take SGD step
-        grad = x.T.dot(exp_logits)
-        self.W -= learning_rate * grad
+        # grad = exp_logits.T.dot(xx)
+        # grad = x.T.dot(exp_logits)
+        # self.W = self.W - learning_rate * grad
+
+        x_row_idx, x_col_idx, x_val = find(x)
+        grad = (exp_logits[x_row_idx, :] * x_val[:, None])
+        self.W[x_col_idx, :] = self.W[x_col_idx, :] - learning_rate * grad
 
 
 class LogTricks(SGD):

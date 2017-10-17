@@ -1,3 +1,60 @@
+# def update(self, x, y, idx, sampled_classes, learning_rate):
+#     """
+#     The dimensions of the matrices below is [batch_size] x [num_classes] unless otherwise stated
+#     """
+#
+#     logits = x.dot(self.W.T).toarray()
+#
+#     # Log-max trick to make numerically stable
+#     logits = logits - np.max(logits, axis=1)[:, None]
+#
+#     # Take exponents and normalize
+#     exp_logits = np.exp(logits)
+#     exp_logits = exp_logits / np.sum(exp_logits, axis=1)[:, None]
+#
+#     # Minus 1 for true classes
+#     exp_logits[[list(range(len(y))), y]] -= 1.0
+#
+#     # Put exp_logits into sparse matrix format
+#     exp_logits = csr_matrix(exp_logits)
+#
+#     # Take SGD step
+#     # print(exp_logits.shape)
+#     grad = exp_logits.T.dot(x)
+#     self.W -= learning_rate * grad
+
+class Softmax(SGD):
+    def update(self, x, y, idx, sampled_classes, learning_rate):
+        """
+        The dimensions of the matrices below is [batch_size] x [num_classes] unless otherwise stated
+        """
+
+        logits = x.dot(self.W.T).toarray()
+
+        # Log-max trick to make numerically stable
+        logits = logits - np.max(logits, axis=1)[:, None]
+
+        # Take exponents and normalize
+        exp_logits = np.exp(logits)
+        exp_logits = exp_logits / np.sum(exp_logits, axis=1)[:, None]
+
+        # Minus 1 for true classes
+        exp_logits[[list(range(len(y))), y]] -= 1.0
+
+        # Put exp_logits into sparse matrix format
+        exp_logits = csr_matrix(exp_logits)
+
+        # Take SGD step
+        # print(exp_logits.shape)
+        print(x.shape)
+        grad = exp_logits.T.dot(x)
+        self.W -= learning_rate * grad
+
+
+
+
+
+
 def one_hot(y, num_classes):
     # Takes y of shape [batch_size, 1] and outputs one-hot version of shape [batch_size, num_classes]
     return np.eye(num_classes)[y[:, 0]]
