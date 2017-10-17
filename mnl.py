@@ -7,8 +7,8 @@ from scipy.sparse import csr_matrix, csc_matrix, coo_matrix, find
 
 class SGD:
     def __init__(self, dim, num_classes, num_train_points):
-        self.W = np.zeros((dim, num_classes))  # Dimension: [num_classes] x [dim]
-        # self.W = csc_matrix((dim, num_classes))  # Dimension: [num_classes] x [dim]
+        # self.W = np.zeros((dim, num_classes))  # Dimension: [num_classes] x [dim]
+        self.W = csr_matrix((dim, num_classes))  # Dimension: [num_classes] x [dim]
         self.u = np.zeros(num_train_points)  # Dimension: [num_train_points]
         self.num_classes = num_classes
 
@@ -36,17 +36,7 @@ class Softmax(SGD):
         """
 
         logits = x * self.W
-        #logits = logits.toarray()
-        # print(type(logits))
-        # print('x.shape', x.shape)
-        # print('self.W.shape', self.W.shape)
-        # print('x', x)
-        # print('W', self.W)
-        # print('logits.shape', logits.shape)
-        # print('printing logits: ', logits)
-        # logits = logits.toarray()
-        # print(type(logits))
-        # print(logits.shape)
+        logits = logits.toarray()
 
         # Log-max trick to make numerically stable
         logits = logits - np.max(logits, axis=1)[:, None]
