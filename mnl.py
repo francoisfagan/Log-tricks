@@ -55,7 +55,7 @@ class Softmax(SGD):
         self.W[x_col_idx, :] -= learning_rate * grad
 
 
-class LogTricks(SGD):
+class Umax(SGD):
     def update(self, x, y, idx, sampled_classes, learning_rate):
         """
         The dimensions of the matrices below is [batch_size] x [num_classes] unless otherwise stated

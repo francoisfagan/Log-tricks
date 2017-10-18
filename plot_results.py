@@ -11,7 +11,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 dataset_name = 'Delicious' #'Eurlex' #'Bibtex' #
 disp_train = True
 disp_test = True
-sgd_names = ['LogTricks', 'Implicit', 'Softmax']
+sgd_names = ['Umax', 'Implicit', 'Softmax']
 
 cmap = plt.get_cmap('jet_r')
 with PdfPages('./Results/Plots/' + dataset_name + '.pdf') as pdf:

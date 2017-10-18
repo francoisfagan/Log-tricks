@@ -18,8 +18,8 @@ def run(train, test, learning_rate, num_epochs_record, num_repeat, epochs, sgd_n
     for repeat in range(num_repeat):
         print('\nRepetition: ', repeat)
 
-        if sgd_name == 'LogTricks':
-            sgd = LogTricks(dim, num_classes, num_train_points)
+        if sgd_name == 'Umax':
+            sgd = Umax(dim, num_classes, num_train_points)
         elif sgd_name == 'Softmax':
             sgd = Softmax(dim, num_classes, num_train_points)
         elif sgd_name == 'Implicit':
