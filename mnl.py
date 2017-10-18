@@ -2,13 +2,13 @@
 
 """
 import numpy as np
-from scipy.sparse import csr_matrix, csc_matrix, coo_matrix, find
+from scipy.special import lambertw
+from scipy.optimize import newton
 
 
 class SGD:
     def __init__(self, dim, num_classes, num_train_points):
-        # self.W = np.zeros((dim, num_classes))  # Dimension: [num_classes] x [dim]
-        self.W = csr_matrix((dim, num_classes))  # Dimension: [num_classes] x [dim]
+        self.W = np.zeros((dim, num_classes))  # Dimension: [num_classes] x [dim]
         self.u = np.zeros(num_train_points)  # Dimension: [num_train_points]
         self.num_classes = num_classes
 
@@ -24,7 +24,7 @@ class SGD:
         """
 
     def error(self, data):
-        pred = np.argmax(data.x.dot(self.W), axis=1)
+        pred = np.argmax(data.x_sparse.dot(self.W), axis=1)
         mean_error = np.mean(data.y != pred)
         return mean_error
 
@@ -34,72 +34,119 @@ class Softmax(SGD):
         """
         The dimensions of the matrices below is [batch_size] x [num_classes] unless otherwise stated
         """
+        x_row, x_row_idx, x_col_idx, x_val = x
 
-        logits = x * self.W
-        logits = logits.toarray()
+        # Calculate logits
+        # Since x is sparse, this computation is as fast as it can be
+        logits = x_row * self.W  # Dimensions [batch_size] x [num_classes]
 
         # Log-max trick to make numerically stable
-        logits = logits - np.max(logits, axis=1)[:, None]
+        logits = logits - np.max(logits, axis=1)[:, None]  # Dimensions [batch_size] x [num_classes]
 
         # Take exponents and normalize
-        exp_logits = np.exp(logits)
-        exp_logits = exp_logits / np.sum(exp_logits, axis=1)[:, None]
+        coef = np.exp(logits)  # Dimensions [batch_size] x [num_classes]
+        coef = coef / np.sum(coef, axis=1)[:, None]  # Dimensions [batch_size] x [num_classes]
 
         # Minus 1 for true classes
-        exp_logits[[list(range(len(y))), y]] -= 1.0
+        coef[[list(range(len(y))), y]] -= 1.0  # Dimensions [batch_size] x [num_classes]
 
         # Take SGD step
-        # grad = exp_logits.T.dot(xx)
-        # grad = x.T.dot(exp_logits)
-        # self.W = self.W - learning_rate * grad
-
-        x_row_idx, x_col_idx, x_val = find(x)
-        grad = (exp_logits[x_row_idx, :] * x_val[:, None])
-        self.W[x_col_idx, :] = self.W[x_col_idx, :] - learning_rate * grad
+        grad = coef[x_row_idx, :] * x_val[:, None]  # Dimensions [non-zero entries in x] x [num_classes]
+        self.W[x_col_idx, :] -= learning_rate * grad
 
 
 class LogTricks(SGD):
     def update(self, x, y, idx, sampled_classes, learning_rate):
+        """
+        The dimensions of the matrices below is [batch_size] x [num_classes] unless otherwise stated
+        """
+        x_row, x_row_idx, x_col_idx, x_val = x
+
         # Find batch_size and num_sampled
-        batch_size = len(idx)
+        sampled_classes = np.setdiff1d(sampled_classes, y)
         num_sampled = len(sampled_classes)
 
         # Calculate logit_difference = x_i^\top(w_k-w_{y_i}) for all i in idx and k in sampled_classes
-        logits_sampled = x.dot(self.W[:, sampled_classes])  # Dimensions [batch_size] x [num_sampled]
-        logits_true = np.array([np.dot(x[i, :], self.W[:, y[i]])
-                                for i in range(batch_size)])  # Dimensions [batch_size]
-        logit_true_matrix = np.tile(logits_true[:, None], (1, num_sampled))  # Dimensions [batch_size] x [num_sampled]
-        logit_diff = logits_sampled - logit_true_matrix  # Dimensions [batch_size] x [num_sampled]
-
-        # Calculate whether the sampled labels coincide with the true labels
-        # labels[i,j] = I(y[i] == s_c[j])
-        # Dimensions [batch_size] x [num_sampled]
-        labels = (np.tile(sampled_classes, (batch_size, 1)) == np.tile(y, (1, num_sampled))).astype('float')
-        # Remove sample from count if it equals the true label
-        num_non_true_sampled = np.sum(1 - labels, axis=1)  # Dimensions [batch_size]
+        logit_sampled = x_row.dot(self.W[:, sampled_classes])  # Dimensions [num_sampled]
+        logit_true = x_row.dot(self.W[:, y])[0, 0]  # Dimensions [1]
+        logit_diff = logit_sampled - logit_true  # Dimensions [num_sampled]
 
         # Update u
-        logit_diff_max = np.max(logit_diff, axis=1)  # Dimensions [batch_size]
-        logit_diff_max_matrix = np.tile(logit_diff_max[:, None],
-                                        (1, num_sampled))  # Dimensions [batch_size] x [num_sampled]
-        u_bound = logit_diff_max + np.log(np.exp(-logit_diff_max) +
-                                          np.sum((1 - labels) * np.exp((logit_diff - logit_diff_max_matrix)),
-                                                 axis=1))  # Dimensions [batch_size]
-        self.u[idx] = np.maximum(self.u[idx], u_bound)  # Dimensions [batch_size]
+        logit_diff_max = np.max(logit_diff, axis=1)  # Dimensions [1]
+        if logit_diff_max < 0:
+            u_bound = np.log(1.0 + np.sum(np.exp(logit_diff), axis=1))
+        else:
+            u_bound = logit_diff_max + np.log(np.exp(-logit_diff_max) +
+                                              np.sum(np.exp((logit_diff - logit_diff_max)), axis=1))  # Dimensions [1]
+        self.u[idx] = np.maximum(self.u[idx], u_bound)  # Dimensions [1]
 
-        # SGD step
-        scaling_factor = float(self.num_classes) / num_non_true_sampled  # Dimensions [batch_size]
-        scaling_factor_matrix = np.tile(scaling_factor[:, None],
-                                        (1, num_sampled))  # Dimensions [batch_size] x [num_sampled]
-        u_idx_matrix = np.tile(self.u[idx][:, None], (1, num_sampled))  # Dimensions [batch_size] x [num_sampled]
-        factor = scaling_factor_matrix * (1 - labels) * np.exp(
-            logit_diff - u_idx_matrix)  # Dimensions [batch_size] x [num_sampled]
-        u_grad = 1 - np.exp(-self.u[idx]) - np.sum(factor, axis=1)  # Dimensions [batch_size]
-        w_sample_grad = np.dot(factor.T, x)  # Dimensions [num_sampled] x [dim]
-        w_true_grad = -x * np.sum(factor, axis=1)[:, None]  # Dimensions [batch_size] x [dim]
+        # Gradient coefficients
+        scaling = (self.num_classes - 1) / num_sampled
+        coef = scaling * np.exp(logit_diff - self.u[idx])
+        # Dimensions [num_sampled]
+
+        # SGD gradients
+        u_grad = 1 - np.exp(-self.u[idx]) - np.sum(coef, axis=1)  # Dimensions [1]
+        w_sample_grad = coef[x_row_idx, :] * x_val[:, None]  # Dimensions [non-zero entries in x] x [num_samples]
+        w_true_grad = - np.sum(w_sample_grad, axis=1)  # Dimensions [non-zero entries in x]
         # https://stackoverflow.com/questions/5795700/multiply-numpy-array-of-scalars-by-array-of-vectors
 
         # Update variables
         self.u[idx] -= learning_rate * u_grad
-        self.W[:, sampled_classes] -= learning_rate * w_sample_grad.T
-        self.W[:, y] -= learning_rate * w_true_grad.T
+
+        # Update sampled W
+        W_sampled_indices = np.vstack((np.tile(x_col_idx, num_sampled),
+                                       np.repeat(sampled_classes, len(x_col_idx)))).tolist()
+        # Dimensions [non-zero entries in x * num_sampled]
+        grad_sampled_indices = np.vstack((np.tile(np.arange(len(x_col_idx)), num_sampled),
+                                          np.repeat(np.arange(num_sampled), len(x_col_idx)))).tolist()
+        # Dimensions [non-zero entries in x * num_sampled]
+        self.W[W_sampled_indices] -= learning_rate * w_sample_grad[grad_sampled_indices]
+
+        # Update true W
+        self.W[x_col_idx, y] -= learning_rate * w_true_grad
+
+
+class Implicit(SGD):
+    def update(self, x, y, idx, sampled_classes, learning_rate):
+        """
+        The dimensions of the matrices below is [batch_size] x [num_classes] unless otherwise stated
+        """
+        x_row, x_row_idx, x_col_idx, x_val = x
+
+        x_norm = x_val.dot(x_val)
+        multiplier = (x_row.dot(self.W[:, sampled_classes]) - x_row.dot(self.W[:, y])
+                      + np.log(2 * learning_rate * (self.num_classes - 1) * x_norm))[0, 0]
+
+        def a(u_temp):
+            diff = multiplier - u_temp
+            if diff < -15:
+                return 0
+            elif diff > 15:
+                return np.log(diff) - np.log(np.log(diff))
+            else:
+                return np.real(lambertw(np.exp(diff)))
+
+        def func(u_temp):
+            a_temp = a(u_temp)
+            return (2 * learning_rate
+                    - 2 * learning_rate * np.exp(-u_temp)
+                    - a_temp / (1 + a_temp)
+                    + 2 * (u_temp - self.u[idx])
+                    - a_temp ** 2 / (1 + a_temp) / x_norm
+                    )
+
+        def fprime(u_temp):
+            a_temp = a(u_temp)
+            return (2 * learning_rate * np.exp(-u_temp)
+                    + a_temp / (1 + a_temp) ** 3
+                    + 2
+                    + a_temp ** 2 * (2 + a_temp) / (1 + a_temp) ** 3 / x_norm
+                    )
+
+        u_optimal = newton(func, max(self.u[idx], multiplier), fprime=fprime, maxiter=200)
+        a_optimal = a(u_optimal)
+
+        self.u[idx] = u_optimal
+        self.W[x_col_idx, sampled_classes] -= a_optimal * x_val / (2 * x_norm)
+        self.W[x_col_idx, y] += a_optimal * x_val / (2 * x_norm)

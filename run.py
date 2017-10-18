@@ -3,11 +3,11 @@
 from mnl import *
 
 
-def run(train, test, learning_rate, batch_size, num_epochs_record, num_repeat, epochs, sgd_name, num_sampled):
+def run(train, test, learning_rate, num_epochs_record, num_repeat, epochs, sgd_name, num_sampled):
 
     # Dataset parameters
-    num_train_points = train.x.shape[0]
-    dim = train.x.shape[1]
+    num_train_points = len(train.x)
+    dim = train.x[0][0].shape[1]
     num_classes = int(max(train.y)) + 1
 
     # Error recording data structures
@@ -18,8 +18,12 @@ def run(train, test, learning_rate, batch_size, num_epochs_record, num_repeat, e
     for repeat in range(num_repeat):
         print('\nRepetition: ', repeat)
 
-        # if cost_name in {'lt', 'IS', 'softmax_IS'}:
-        sgd = Softmax(dim, num_classes, num_train_points)
+        if sgd_name == 'LogTricks':
+            sgd = LogTricks(dim, num_classes, num_train_points)
+        elif sgd_name == 'Softmax':
+            sgd = Softmax(dim, num_classes, num_train_points)
+        elif sgd_name == 'Implicit':
+            sgd = Implicit(dim, num_classes, num_train_points)
 
         # Prepare new records
         train_error.append([])
@@ -28,14 +32,16 @@ def run(train, test, learning_rate, batch_size, num_epochs_record, num_repeat, e
 
         # Start training
         print('Optimization started!')
-        num_batches = num_train_points // batch_size
+        num_batches = num_train_points * (num_sampled if sgd_name == 'Implicit' else 1)
         for epoch in range(epochs):
 
             # Loop over all batches
             for i_batch in range(num_batches):
                 # Get next batch
-                batch_xs, batch_ys, batch_idx = train.next_batch(batch_size)
-                sampled_classes = np.random.choice(num_classes, size=num_sampled, replace=False)
+                batch_xs, batch_ys, batch_idx = train.next_batch(1)
+                sampled_classes = np.random.choice(num_classes,
+                                                   size=(1 if sgd_name == 'Implicit' else num_sampled),
+                                                   replace=False)
 
                 # Take sgd step
                 sgd.update(batch_xs, batch_ys, batch_idx, sampled_classes, learning_rate)
