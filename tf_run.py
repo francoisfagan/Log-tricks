@@ -2,6 +2,9 @@
 
 import tensorflow as tf
 import numpy as np
+import tensorflow as tf
+from tf_load_data import load_data
+from tf_mnl import *
 from tensorflow.python.ops import nn_ops, embedding_ops
 from tensorflow.python.ops.nn_impl import _compute_sampled_logits, _sum_rows, sigmoid_cross_entropy_with_logits
 
@@ -10,10 +13,22 @@ def one_hot(y, num_classes):
     return np.eye(num_classes)[y[:, 0]]
 
 
-def run(train, test, num_train_points, cost,
-        learning_rate, batch_size, num_epochs_record_cost, num_repeat, training_epochs, error, num_classes, cost_name,
+def run(dataset_name,
+        learning_rate,
+        batch_size,
+        num_epochs_record_cost,
+        num_repeat,
+        training_epochs,
+        error,
+        cost_name,
         num_sampled,
-        x, y, y_one_hot, W, b):
+        ):
+
+    train, test, dim, num_classes, num_train_points = load_data(dataset_name)
+    variables = graph(dim, num_classes, num_train_points, num_sampled)
+    x, y, y_one_hot, W, b = variables
+    cost = get_cost(cost_name, num_classes, num_sampled, *variables)
+
     optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost)
     train_error = []  # Cost list of lists of dim: [num_repeat] x [num_epochs_record_cost]
     test_error = []  # Cost list of lists of dim: [num_repeat] x [num_epochs_record_cost]
@@ -39,9 +54,9 @@ def run(train, test, num_train_points, cost,
 
                 # Loop over all batches
                 for i_batch in range(num_batches):
+
                     # Get next batch
                     batch_xs, batch_ys = train.next_batch(batch_size)
-                    sampled_classes = np.random.randint(num_classes, size=num_sampled)
 
                     # Run optimization op (backprop) and cost op (to get loss value)
                     if cost_name != 'softmax':

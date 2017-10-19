@@ -1,13 +1,12 @@
 """Defines how all data is to be loaded"""
 import numpy as np
 from sklearn.datasets import load_svmlight_file
-from scipy.sparse import csr_matrix, csc_matrix, coo_matrix, find
 
 
 class MNLDataset():
     def __init__(self, x, y):
-        self.x = x #csr_matrix(x)
-        self.y = y
+        self.x = x.todense().A
+        self.y = y[:, None].astype(int)
         self.num_examples = x.shape[0]
         self.batch_index = 0
 
@@ -19,32 +18,11 @@ class MNLDataset():
         return [self.x[batch_indices, :], self.y[batch_indices, :]]
 
 
-def loadLIBSVMdata(file_path, train_test_split):
-    # Load the data
-    data = load_svmlight_file(file_path, multilabel=True)
-
-    # Separate into x and y
-    # Remove data with no y value
-    # and if multiple y values, take the first one
-    y = data[1]
-    y_not_empty = [i for i, y_val in enumerate(y) if y_val != ()]
-    y = np.array([int(y[i][0]) for i in y_not_empty])[:, None]
-    x = data[0].toarray()[y_not_empty, :]
-
-    # Find point to split training and test sets
-    n_samples = len(y)
-    split_point = int(train_test_split * n_samples)
-
-    # Create train and test sets
-    train = MNLDataset(x[:split_point, :], y[:split_point])
-    test = MNLDataset(x[split_point:, :], y[split_point:])
-    return train, test
-
-
-def load_data(dataset_name, train_test_split):
+def load_data(dataset_name):
     print('Loading data')
-    file_path = '../UnbiasedSoftmaxData/OriginalData/' + dataset_name + '.txt'
-    train, test = loadLIBSVMdata(file_path, train_test_split)
+    file_path = '../UnbiasedSoftmaxData/ProcessedData/' + dataset_name
+    train = MNLDataset(*load_svmlight_file(file_path + '_train.txt'))
+    test = MNLDataset(*load_svmlight_file(file_path + '_test.txt'))
 
     dim = train.x.shape[1]
     num_classes = int(max(train.y)) + 1

@@ -24,9 +24,16 @@ class SGD:
         """
 
     def error(self, data):
-        pred = np.argmax(data.x_sparse.dot(self.W), axis=1)
+        logits = data.x_sparse.dot(self.W)  # Dimensions [data_size] x [num_classes]
+        pred = np.argmax(logits, axis=1)  # Dimensions [data_size]
+
+        max_logit = logits[list(range(len(pred))), pred]  # Dimensions [data_size]
+        logits = logits - max_logit[:, None]  # Log-max trick, Dimensions [data_size] x [num_classes]
+        log_loss = np.mean(- logits[list(range(len(pred))), data.y]
+                           + np.log(np.sum(np.exp(logits), axis=1)))  # Dimensions [1]
+
         mean_error = np.mean(data.y != pred)
-        return mean_error
+        return [mean_error, log_loss]
 
 
 class Softmax(SGD):

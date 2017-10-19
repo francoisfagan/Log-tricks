@@ -1,14 +1,39 @@
 """SGD is run from this file"""
 
+import numpy as np
+from load_data import load_data
 from mnl import *
+from tf_load_data import load_data
+from tf_mnl import *
 
 
-def run(train, test, learning_rate, num_epochs_record, num_repeat, epochs, sgd_name, num_sampled):
+def run(dataset_name,
+        initial_learning_rate,
+        learning_rate_epoch_decrease,
+        num_epochs_record,
+        num_repeat,
+        epochs,
+        sgd_name,
+        tf_indicator,
+        num_sampled,
+        batch_size):
 
-    # Dataset parameters
-    num_train_points = len(train.x)
-    dim = train.x[0][0].shape[1]
-    num_classes = int(max(train.y)) + 1
+    if tf_indicator:
+        train, test, dim, num_classes, num_train_points = load_data(dataset_name)
+        variables = graph(dim, num_classes, num_train_points, num_sampled)
+        x, y, y_one_hot, W, b = variables
+        cost = get_cost(sgd_name, num_classes, num_sampled, *variables)
+
+        optimizer = tf.train.GradientDescentOptimizer(initial_learning_rate).minimize(cost)
+
+    else:
+        # Load data
+        train, test = load_data(dataset_name)
+
+        # Dataset parameters
+        num_train_points = len(train.x)
+        dim = train.x[0][0].shape[1]
+        num_classes = int(max(train.y)) + 1
 
     # Error recording data structures
     train_error = []  # Dimension: [num_repeat] x [num_epochs_record]
@@ -24,6 +49,8 @@ def run(train, test, learning_rate, num_epochs_record, num_repeat, epochs, sgd_n
             sgd = Softmax(dim, num_classes, num_train_points)
         elif sgd_name == 'Implicit':
             sgd = Implicit(dim, num_classes, num_train_points)
+        else:
+            print('Please enter a valid sgd method')
 
         # Prepare new records
         train_error.append([])
@@ -44,12 +71,15 @@ def run(train, test, learning_rate, num_epochs_record, num_repeat, epochs, sgd_n
                                                    replace=False)
 
                 # Take sgd step
-                sgd.update(batch_xs, batch_ys, batch_idx, sampled_classes, learning_rate)
+                sgd.update(batch_xs,
+                           batch_ys,
+                           batch_idx,
+                           sampled_classes,
+                           initial_learning_rate * (learning_rate_epoch_decrease ** epoch)
+                           )
 
             # Record and display loss once each epoch
             if (epoch + 1) % (epochs // num_epochs_record) == 0:
-
-                # Record errors
                 train_error[-1].append(sgd.error(train))
                 test_error[-1].append(sgd.error(test))
                 epochs_recorded[-1].append(epoch)
@@ -61,9 +91,10 @@ def run(train, test, learning_rate, num_epochs_record, num_repeat, epochs, sgd_n
 
         print('Optimization Finished!')
 
-    record = {'test_error: ': test_error,
-              'train_error: ': train_error,
-              'epochs_recorded': epochs_recorded
+    # Save results
+    record = {'test': np.array(test_error),
+              'train': np.array(train_error),
+              'epochs': np.array(epochs_recorded)
               }
 
     return record
