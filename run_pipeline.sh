@@ -3,7 +3,7 @@
 sgd_name=$1
 #dataset_name='Bibtex'
 initial_learning_rate=0 # -1 Indicates to use custom optimal learning rate for Eurlex for each algorithm
-for dataset_name in 'Bibtex' 'Delicious' 'wiki10' 'mnist' # 'Eurlex' #'AmazonCat'  'wikiSmall' 'Bibtex' 'Delicious' 'wiki10' 'mnist'
+for dataset_name in 'wikiSmall' # 'AmazonCat' # 'Bibtex' 'Delicious' 'wiki10' 'mnist' # 'Eurlex' #
 do
 
 ## If want to iterate over multiple learning rates

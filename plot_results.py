@@ -9,8 +9,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 from pathlib import Path
 
-
-dataset_name = 'Eurlex' #'Bibtex'  # 'Delicious' #
+dataset_name = 'wiki10'  #'mnist' #'Delicious' #'wikiSmall' # 'AmazonCat' # 'Eurlex' #'Bibtex'  #
 
 # Indicate whether to plot train and/or test results
 disp_train = True
@@ -25,11 +24,14 @@ initial_learning_rate = 0.01
 sgd_name = 'Umax'
 
 # Indicate whether to iterate on sgd or learning rate
-iterate_SGD_True_LR_False = False
+iterate_SGD_True_LR_False = True
 iterate_list = sgd_names if iterate_SGD_True_LR_False else initial_learning_rates
 
 # Set color spectrum of lines
 cmap = plt.get_cmap('jet_r')
+
+# Indicate to use custom optimal learning rate for Eurlex for each algorithm
+custom_learning_rate = True
 
 # Plot both classification error and log-loss
 for error0_loss1 in [0, 1]:
@@ -37,7 +39,9 @@ for error0_loss1 in [0, 1]:
     # Calculate file name for saving pdf
     pdf_file_name = ('./Results/Plots/'
                      + dataset_name + '_'
-                     + (str(initial_learning_rate) if iterate_SGD_True_LR_False else sgd_name) + '_'
+                     + ((str(initial_learning_rate) if iterate_SGD_True_LR_False else sgd_name)
+                        if not custom_learning_rate else 'custom_lr')
+                     + '_'
                      + ('loss' if error0_loss1 else 'error')
                      + '.pdf')
 
@@ -57,9 +61,22 @@ for error0_loss1 in [0, 1]:
             else:
                 initial_learning_rate = iterate
 
+            # Set learning rate if doing sgd
+            # Depending on how the file was save, sometimes it should be 100 and other times 100.0
+            if custom_learning_rate and iterate_SGD_True_LR_False:
+                if sgd_name == 'Implicit':
+                    initial_learning_rate = 1.0
+                elif sgd_name == 'Umax':
+                    initial_learning_rate = 0.1
+                elif sgd_name == 'sampled_softmax':
+                    initial_learning_rate = 100
+                elif sgd_name == 'nce':
+                    initial_learning_rate = 100
+                elif sgd_name == 'ove':
+                    initial_learning_rate = 0.1
+
             # Set color
             color = cmap(float(i - num_iterates_do_not_open) / (len(iterate_list) - num_iterates_do_not_open))
-            # print()
 
             # Open the file (if it exists)
             file_name = './Results/' + sgd_name + '_' + dataset_name + '_' + str(initial_learning_rate) + '.p'

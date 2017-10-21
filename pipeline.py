@@ -21,14 +21,15 @@ num_sampled = 5
 num_repeat = 1
 sgd_name = 'sampled_softmax'
 dataset_name = 'wikiSmall'
-custom_learning_rate = True
+custom_learning_rate = True  # Indicate to use custom optimal learning rate for Eurlex for each algorithm
 
 # Read in parameters if passed in from the command line
 if len(sys.argv) > 1:
     sgd_name = sys.argv[1]
     dataset_name = sys.argv[2]
-    initial_learning_rate = 10**float(sys.argv[3])
+    initial_learning_rate = 10 ** float(sys.argv[3])
 
+# Set custom learning rate for given algorithm
 if custom_learning_rate:
     if sgd_name == 'Implicit':
         initial_learning_rate = 1.0
@@ -47,7 +48,7 @@ print('initial_learning_rate', initial_learning_rate)
 # for sgd_name in ['sampled_softmax']:
 #     # 'Implicit', 'Umax', 'sampled_softmax', 'nce', 'ove', ### 'Softmax', 'tf_softmax'
 #     for dataset_name in ['Bibtex']:
-        # 'wikiSmall'  # 'AmazonCat'  # 'wiki10'  # 'Eurlex'  # 'mnist'  # 'Delicious'
+# 'wikiSmall'  # 'AmazonCat'  # 'wiki10'  # 'Eurlex'  # 'mnist'  # 'Delicious'
 print(sgd_name, dataset_name)
 tf_indicator = sgd_name in {'sampled_softmax', 'tf_softmax', 'nce', 'ove'}
 
