@@ -23,9 +23,9 @@ def load_data(dataset_name):
     file_path = '../UnbiasedSoftmaxData/ProcessedData/' + dataset_name
     train = MNLDataset(*load_svmlight_file(file_path + '_train.txt'))
     test = MNLDataset(*load_svmlight_file(file_path + '_test.txt'))
+    test.x = np.pad(test.x, ((0, 0), (0, train.x.shape[1] - test.x.shape[1])), 'constant')
 
     dim = train.x.shape[1]
     num_classes = int(max(train.y)) + 1
     num_train_points = train.x.shape[0]
     return [train, test, dim, num_classes, num_train_points]
-

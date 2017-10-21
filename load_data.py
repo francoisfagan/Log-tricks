@@ -31,4 +31,5 @@ def load_data(dataset_name):
     file_path = '../UnbiasedSoftmaxData/ProcessedData/' + dataset_name
     train = MNLDataset(file_path + '_train')
     test = MNLDataset(file_path + '_test')
+    test.x_sparse._shape = (test.x_sparse._shape[0], train.x_sparse.shape[1])
     return [train, test]

@@ -6,9 +6,10 @@ import numpy as np
 from tensorflow.python.ops.nn_impl import _compute_sampled_logits, _sum_rows, sigmoid_cross_entropy_with_logits
 from tensorflow.python.ops.candidate_sampling_ops import uniform_candidate_sampler
 from tensorflow.python.ops.gen_nn_ops import softplus
-from tensorflow.python.ops import nn_ops, embedding_ops, math_ops, array_ops, variables, candidate_sampling_ops
+from tensorflow.python.ops import nn_ops, embedding_ops, math_ops, array_ops, variables
 from tensorflow.python.framework import ops
 from tensorflow.python.framework import dtypes
+from mnl import error_log_loss
 
 
 def one_hot(y, num_classes):
@@ -196,23 +197,24 @@ def graph(dim, num_classes, num_train_points, num_sampled):
     W = tf.Variable(tf.zeros([dim, num_classes]))
     b = tf.zeros([num_classes])
 
-    variables = [x, y, y_one_hot, W, b]
+    # Learning rate
+    learning_rate = tf.placeholder(tf.float32, shape=[])
+
+    variables = [x, y, y_one_hot, W, b, learning_rate]
 
     return variables
 
 
 def error(x, y_one_hot, W, b, data, num_classes):
-    pred_softmax = tf.nn.softmax(tf.matmul(x, W) + b)
-    wrong_prediction = tf.not_equal(tf.argmax(pred_softmax, 1), tf.argmax(y_one_hot, 1))
-    # Calculate accuracy
-    pred_error = tf.reduce_mean(tf.cast(wrong_prediction, tf.float32))
-    return pred_error.eval({x: data.x, y_one_hot: one_hot(data.y, num_classes)})
+    tf_logits = tf.nn.softmax(tf.matmul(x, W) + b)
+    logits = tf_logits.eval({x: data.x, y_one_hot: one_hot(data.y, num_classes)})
+    return error_log_loss(logits, data.y[:, 0])
 
 
-def get_cost(cost_name, num_classes, num_sampled, x, y, y_one_hot, W, b):
+def get_cost(cost_name, num_classes, num_sampled, x, y, y_one_hot, W, b, learning_rate):
     print('Getting cost function')
 
-    if cost_name == 'softmax':
+    if cost_name == 'tf_softmax':
         return cost_softmax(x, y_one_hot, W, b)
     elif cost_name == 'sampled_softmax':
         return cost_sampled_softmax(x, y, W, b, num_classes, num_sampled)

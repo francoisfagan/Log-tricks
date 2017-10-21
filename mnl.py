@@ -6,6 +6,18 @@ from scipy.special import lambertw
 from scipy.optimize import newton
 
 
+def error_log_loss(logits, y):
+    pred = np.argmax(logits, axis=1)  # Dimensions [data_size]
+
+    max_logit = logits[list(range(len(pred))), pred]  # Dimensions [data_size]
+    logits = logits - max_logit[:, None]  # Log-max trick, Dimensions [data_size] x [num_classes]
+    log_loss = np.mean(- logits[list(range(len(pred))), y]
+                       + np.log(np.sum(np.exp(logits), axis=1)))  # Dimensions [1]
+
+    mean_error = np.mean(y != pred)
+    return [mean_error, log_loss]
+
+
 class SGD:
     def __init__(self, dim, num_classes, num_train_points):
         self.W = np.zeros((dim, num_classes))  # Dimension: [num_classes] x [dim]
@@ -25,15 +37,7 @@ class SGD:
 
     def error(self, data):
         logits = data.x_sparse.dot(self.W)  # Dimensions [data_size] x [num_classes]
-        pred = np.argmax(logits, axis=1)  # Dimensions [data_size]
-
-        max_logit = logits[list(range(len(pred))), pred]  # Dimensions [data_size]
-        logits = logits - max_logit[:, None]  # Log-max trick, Dimensions [data_size] x [num_classes]
-        log_loss = np.mean(- logits[list(range(len(pred))), data.y]
-                           + np.log(np.sum(np.exp(logits), axis=1)))  # Dimensions [1]
-
-        mean_error = np.mean(data.y != pred)
-        return [mean_error, log_loss]
+        return error_log_loss(logits, data.y)
 
 
 class Softmax(SGD):
@@ -85,7 +89,8 @@ class Umax(SGD):
         else:
             u_bound = logit_diff_max + np.log(np.exp(-logit_diff_max) +
                                               np.sum(np.exp((logit_diff - logit_diff_max)), axis=1))  # Dimensions [1]
-        self.u[idx] = np.maximum(self.u[idx], u_bound)  # Dimensions [1]
+        if self.u[idx] < (u_bound - 1):
+            self.u[idx] = u_bound  # Dimensions [1]
 
         # Gradient coefficients
         scaling = (self.num_classes - 1) / num_sampled
