@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 from pathlib import Path
 
-dataset_name = 'wiki10'  #'mnist' #'Delicious' #'wikiSmall' # 'AmazonCat' # 'Eurlex' #'Bibtex'  #
+dataset_name = 'Bibtex'  #'wiki10'  #'mnist' #'Delicious' #'wikiSmall' # 'AmazonCat' # 'Eurlex' #
 
 # Indicate whether to plot train and/or test results
 disp_train = True
