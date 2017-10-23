@@ -67,6 +67,8 @@ def run(dataset_name,
 
             if sgd_name == 'Umax':
                 sgd = Umax(dim, num_classes, num_train_points)
+            elif sgd_name == 'tilde_Umax':
+                sgd = tilde_Umax(dim, num_classes, num_train_points)
             elif sgd_name == 'Softmax':
                 sgd = Softmax(dim, num_classes, num_train_points)
             elif sgd_name == 'Implicit':

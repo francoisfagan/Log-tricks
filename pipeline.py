@@ -14,13 +14,13 @@ t0 = time.time()
 # Parameters (in the future can pass these in from the command line)
 initial_learning_rate = 0.01
 learning_rate_epoch_decrease = 0.9
-epochs = 50
-num_epochs_record = 20
+epochs = 10
+num_epochs_record = 10
 batch_size = 100  # For numpy methods batch_size = 1 always
 num_sampled = 5
 num_repeat = 1
-sgd_name = 'sampled_softmax'
-dataset_name = 'wikiSmall'
+sgd_name = 'Umax'
+dataset_name = 'Bibtex' # 'Eurlex' #'wikiSmall'
 custom_learning_rate = True  # Indicate to use custom optimal learning rate for Eurlex for each algorithm
 
 # Read in parameters if passed in from the command line
@@ -34,6 +34,8 @@ if custom_learning_rate:
     if sgd_name == 'Implicit':
         initial_learning_rate = 1.0
     elif sgd_name == 'Umax':
+        initial_learning_rate = 0.1
+    elif sgd_name == 'tilde_Umax':
         initial_learning_rate = 0.1
     elif sgd_name == 'sampled_softmax':
         initial_learning_rate = 100

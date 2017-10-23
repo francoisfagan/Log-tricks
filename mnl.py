@@ -20,9 +20,9 @@ def error_log_loss(logits, y):
 
 class SGD:
     def __init__(self, dim, num_classes, num_train_points):
-        self.W = np.zeros((dim, num_classes))  # Dimension: [num_classes] x [dim]
-        self.u = np.zeros(num_train_points)  # Dimension: [num_train_points]
         self.num_classes = num_classes
+        self.W = np.zeros((dim, num_classes))  # Dimension: [num_classes] x [dim]
+        self.u = np.ones(num_train_points) * np.log(num_classes)  # Dimension: [num_train_points]
 
     def update(self, x, y, idx, sampled_classes, learning_rate):
         """ Performs sgd update of variables
@@ -112,6 +112,62 @@ class Umax(SGD):
         # Dimensions [non-zero entries in x * num_sampled]
         grad_sampled_indices = np.vstack((np.tile(np.arange(len(x_col_idx)), num_sampled),
                                           np.repeat(np.arange(num_sampled), len(x_col_idx)))).tolist()
+        # Dimensions [non-zero entries in x * num_sampled]
+        self.W[W_sampled_indices] -= learning_rate * w_sample_grad[grad_sampled_indices]
+
+        # Update true W
+        self.W[x_col_idx, y] -= learning_rate * w_true_grad
+
+
+class tilde_Umax(SGD):
+    def update(self, x, y, idx, sampled_classes, learning_rate):
+        """
+        The dimensions of the matrices below is [batch_size] x [num_classes] unless otherwise stated
+        """
+        x_row, x_row_idx, x_col_idx, x_val = x
+
+        # Find batch_size and num_sampled
+        sampled_classes = np.setdiff1d(sampled_classes, y)
+        num_sampled = len(sampled_classes)
+
+        # Calculate logit_difference = x_i^\top(w_k-w_{y_i}) for all i in idx and k in sampled_classes
+        logit_sampled = x_row.dot(self.W[:, sampled_classes])[0]  # Dimensions [num_sampled]
+        logit_true = x_row.dot(self.W[:, y])[0, 0]  # Dimensions [1]
+        logit_true_sampled = np.concatenate((np.array([logit_true]), logit_sampled))
+
+        # Update u
+        logit_max = np.max(logit_true_sampled)  # Dimensions [1]
+        u_bound = logit_max + np.log(np.sum(np.exp((logit_true_sampled - logit_max))))  # Dimensions [1]
+        if self.u[idx] < (u_bound - 1):
+            self.u[idx] = u_bound  # Dimensions [1]
+
+        # Gradient coefficients
+        scaling = (self.num_classes - 1) / num_sampled
+        coef_sampled = scaling * np.exp(logit_sampled - self.u[idx])[None, :]
+        coef_true = np.exp(logit_true - self.u[idx])
+
+        # SGD gradients
+        u_grad = 1 - np.exp(coef_true) - np.sum(coef_sampled)  # Dimensions [1]
+        w_sample_grad = coef_sampled[x_row_idx, :] * x_val[:, None]  # Dimensions [non-zero entries in x] x [num_samples]
+        w_true_grad = coef_true - 1  # Dimensions [non-zero entries in x]
+        # https://stackoverflow.com/questions/5795700/multiply-numpy-array-of-scalars-by-array-of-vectors
+
+        # Update variables
+        self.u[idx] -= learning_rate * u_grad
+
+        # Update sampled W
+        W_sampled_indices = np.vstack((np.tile(x_col_idx, num_sampled),
+                                       np.repeat(sampled_classes, len(x_col_idx)))).tolist()
+        # Dimensions [non-zero entries in x * num_sampled]
+        grad_sampled_indices = np.vstack((np.tile(np.arange(len(x_col_idx)), num_sampled),
+                                          np.repeat(np.arange(num_sampled), len(x_col_idx)))).tolist()
+
+        # if w_sample_grad.shape == (1, 1):
+        #     print(w_sample_grad)
+        #     print(grad_sampled_indices)
+        #     print(w_sample_grad.shape)
+        #     print(w_sample_grad[grad_sampled_indices].shape)
+        #     print(self.W[W_sampled_indices].shape)
         # Dimensions [non-zero entries in x * num_sampled]
         self.W[W_sampled_indices] -= learning_rate * w_sample_grad[grad_sampled_indices]
 
