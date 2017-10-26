@@ -14,14 +14,14 @@ t0 = time.time()
 # Parameters (in the future can pass these in from the command line)
 initial_learning_rate = 0.01
 learning_rate_epoch_decrease = 0.9
-epochs = 10
-num_epochs_record = 10
+epochs = 50
+num_epochs_record = 20
 batch_size = 100  # For numpy methods batch_size = 1 always
 num_sampled = 5
 num_repeat = 1
-sgd_name = 'Umax'
+sgd_name = 'nce'
 dataset_name = 'Bibtex' # 'Eurlex' #'wikiSmall'
-custom_learning_rate = True  # Indicate to use custom optimal learning rate for Eurlex for each algorithm
+custom_learning_rate = False  # Indicate to use custom optimal learning rate for Eurlex for each algorithm
 
 # Read in parameters if passed in from the command line
 if len(sys.argv) > 1:

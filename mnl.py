@@ -22,7 +22,7 @@ class SGD:
     def __init__(self, dim, num_classes, num_train_points):
         self.num_classes = num_classes
         self.W = np.zeros((dim, num_classes))  # Dimension: [num_classes] x [dim]
-        self.u = np.ones(num_train_points) * np.log(num_classes)  # Dimension: [num_train_points]
+        self.u = np.ones(num_train_points) * 0.0# np.log(num_classes)  # Dimension: [num_train_points]
 
     def update(self, x, y, idx, sampled_classes, learning_rate):
         """ Performs sgd update of variables
@@ -105,6 +105,7 @@ class Umax(SGD):
 
         # Update variables
         self.u[idx] -= learning_rate * u_grad
+        self.u[idx] = max(0.0, self.u[idx])
 
         # Update sampled W
         W_sampled_indices = np.vstack((np.tile(x_col_idx, num_sampled),
@@ -199,7 +200,7 @@ class Implicit(SGD):
             a_temp = a(u_temp)
             return (2 * learning_rate
                     - 2 * learning_rate * np.exp(-u_temp)
-                    - a_temp / (1 + a_temp)
+                    - a_temp / (1 + a_temp) / x_norm
                     + 2 * (u_temp - self.u[idx])
                     - a_temp ** 2 / (1 + a_temp) / x_norm
                     )
@@ -207,7 +208,7 @@ class Implicit(SGD):
         def fprime(u_temp):
             a_temp = a(u_temp)
             return (2 * learning_rate * np.exp(-u_temp)
-                    + a_temp / (1 + a_temp) ** 3
+                    + a_temp / (1 + a_temp) ** 3 / x_norm
                     + 2
                     + a_temp ** 2 * (2 + a_temp) / (1 + a_temp) ** 3 / x_norm
                     )
@@ -216,5 +217,6 @@ class Implicit(SGD):
         a_optimal = a(u_optimal)
 
         self.u[idx] = u_optimal
+        self.u[idx] = max(0.0, self.u[idx])
         self.W[x_col_idx, sampled_classes] -= a_optimal * x_val / (2 * x_norm)
         self.W[x_col_idx, y] += a_optimal * x_val / (2 * x_norm)
