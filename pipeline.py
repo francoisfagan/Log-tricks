@@ -19,9 +19,9 @@ num_epochs_record = 20
 batch_size = 100  # For numpy methods batch_size = 1 always
 num_sampled = 5
 num_repeat = 1
-sgd_name = 'nce'
+sgd_name = 'Umax'
 dataset_name = 'Bibtex' # 'Eurlex' #'wikiSmall'
-custom_learning_rate = False  # Indicate to use custom optimal learning rate for Eurlex for each algorithm
+custom_learning_rate = True  # Indicate to use custom optimal learning rate for Eurlex for each algorithm
 
 # Read in parameters if passed in from the command line
 if len(sys.argv) > 1:

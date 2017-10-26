@@ -9,7 +9,8 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 from pathlib import Path
 
-dataset_name = 'wikiSmall' #'AmazonCat' #'Bibtex'  #'wiki10'  #'mnist' #'Delicious'  #'Eurlex' #
+dataset_name = 'Eurlex' #'AmazonCat' #'wiki10'  #'mnist' #'Delicious'  #'wikiSmall' #'Bibtex'  #
+sgd_name = 'single_nce'#'ove'#'nce' #'sampled_softmax'#'Umax'#'tilde_Umax'#'Implicit'#
 
 # Indicate whether to plot train and/or test results
 disp_train = True
@@ -17,14 +18,14 @@ disp_test = False
 
 # Variations that may iterate over
 sgd_names = ['ove', 'nce', 'sampled_softmax', 'Umax', 'Implicit']  # , 'tilde_Umax'
-initial_learning_rates = [100000.0, 10000.0, 1000.0, 100.0, 10.0, 1.0, 0.1, 0.01, 0.001, 0.0001]  # 1000000.0,
+initial_learning_rates = [1000.0, 100.0, 10.0, 1.0, 0.1, 0.01, 0.001]  # 1000000.0,
 
 # Default iterate values
 initial_learning_rate = 0.01
-sgd_name = 'tilde_Umax'
+# sgd_name = 'tilde_Umax'
 
 # Indicate whether to iterate on sgd or learning rate
-iterate_SGD_True_LR_False = True
+iterate_SGD_True_LR_False = False
 iterate_list = sgd_names if iterate_SGD_True_LR_False else initial_learning_rates
 
 # Set color spectrum of lines
@@ -33,7 +34,7 @@ linewidth = 0.5
 figsize=(3, 3)  # Was (3, 3) for the plots in the main part of the paper
 
 # Indicate to use custom optimal learning rate for Eurlex for each algorithm
-custom_learning_rate = True
+custom_learning_rate = False
 
 # Plot both classification error and log-loss
 for error0_loss1 in [0, 1]:
@@ -63,7 +64,7 @@ for error0_loss1 in [0, 1]:
                 initial_learning_rate = iterate
 
             # Set color
-            color = cmap(float(i - num_iterates_do_not_open) / (len(iterate_list) - num_iterates_do_not_open))
+            color = cmap(float(i) / len(iterate_list))
 
             # Set learning rate if doing sgd
             # Depending on how the file was save, sometimes it should be 100 and other times 100.0
@@ -77,22 +78,27 @@ for error0_loss1 in [0, 1]:
                     marker = 'v'
                     color = 'b'
                 elif sgd_name == 'sampled_softmax':
-                    initial_learning_rate = 100
+                    initial_learning_rate = 100.0
                     marker = 'x'
                     color = 'orange'
                 elif sgd_name == 'nce':
-                    initial_learning_rate = 100
+                    initial_learning_rate = 100.0
                     marker = '+'
                     color = 'c'
                 elif sgd_name == 'ove':
                     initial_learning_rate = 0.1
                     marker = 's'
                     color = 'k'
+            else:
+                marker = '.'
+
+
 
             # Open the file (if it exists)
             file_name = './Results/Complete/' + sgd_name + '_' + dataset_name + '_' + str(initial_learning_rate) + '.p'
             if Path(file_name).is_file():
                 with open(file_name, 'rb') as f:
+                    print(file_name)
 
                     # Gather the results
                     results = pickle.load(f)
@@ -107,6 +113,8 @@ for error0_loss1 in [0, 1]:
                             label = 'NCE'
                         elif iterate == 'ove':
                             label = 'OVE'
+                        elif iterate == 'single_nce':
+                            label = 'NCE (TF)'
 
                     # Display mean and standard deviation
                     displays = (['train'] if disp_train else []) + (['test'] if disp_test else [])
@@ -133,19 +141,34 @@ for error0_loss1 in [0, 1]:
         #     plt.ylabel('Log-likelihood')
         # else:
         #     plt.ylabel('Error rate')
-        if dataset_name == 'mnist':
-            plt.title('MNIST')
-        elif dataset_name == 'wiki10':
-            plt.title('Wiki10')
-        elif dataset_name == 'wikiSmall':
-            plt.title('Wiki-small')
+        if iterate_SGD_True_LR_False:
+            if dataset_name == 'mnist':
+                plt.title('MNIST')
+            elif dataset_name == 'wiki10':
+                plt.title('Wiki10')
+            elif dataset_name == 'wikiSmall':
+                plt.title('Wiki-small')
+            else:
+                plt.title(dataset_name)
         else:
-            plt.title(dataset_name)
+            plt.title(sgd_name)
+            if sgd_name == 'sampled_softmax':
+                plt.title('IS')
+            elif sgd_name == 'Umax':
+                plt.title('U-max')
+            elif sgd_name == 'tilde_Umax':
+                plt.title('U-max (2)')
+            elif sgd_name == 'nce':
+                plt.title('NCE')
+            elif sgd_name == 'ove':
+                plt.title('OVE')
+            elif sgd_name == 'single_nce':
+                plt.title('NCE (1,1)')
 
         # plt.xlabel('Epochs')
         # plt.legend(loc='upper right')
 
-        plt.tight_layout()
+        plt.tight_layout(pad=0.3)
 
         # Save figure
         pdf.savefig()
