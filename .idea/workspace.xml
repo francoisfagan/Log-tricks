@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d932a138-bc3e-4836-89d0-79e375b2c988" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Results/Implicit_Bibtex_0.01.p" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Results/Plots/Bibtex_custom_lr_error.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Results/Plots/Bibtex_custom_lr_loss.pdf" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Results/Complete/Implicit_Bibtex_1.0.p" afterPath="$PROJECT_DIR$/Results/Complete/Implicit_Bibtex_1.0.p" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Results/Complete/Umax_Bibtex_0.1.p" afterPath="$PROJECT_DIR$/Results/Complete/Umax_Bibtex_0.1.p" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/results_table.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline.py" afterPath="$PROJECT_DIR$/pipeline.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/plot_results.py" afterPath="$PROJECT_DIR$/plot_results.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -52,13 +46,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plot_results.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="plot_results.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plot_results.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="168" column="39" lean-forward="true" selection-start-line="168" selection-start-column="39" selection-end-line="168" selection-end-column="39" />
+            <state relative-caret-position="340">
+              <caret line="173" column="21" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="173" selection-end-column="21" />
               <folding>
                 <element signature="e#44#57#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="results_table.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/results_table.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="28" lean-forward="false" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -150,6 +156,7 @@
         <option value="$PROJECT_DIR$/mnl.py" />
         <option value="$PROJECT_DIR$/pipeline.py" />
         <option value="$PROJECT_DIR$/plot_results.py" />
+        <option value="$PROJECT_DIR$/results_table.py" />
       </list>
     </option>
   </component>
@@ -227,7 +234,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.plot_results">
+  <component name="RunManager" selected="Python.results_table">
     <configuration name="Implicit_illustration" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -279,17 +286,7 @@
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
-    <configuration name="run_pipeline.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="INTERPRETER_PATH" value="/bin/bash" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run_pipeline.sh" />
-      <option name="PARAMETERS" value="" />
-      <module name="softmax_tf" />
-      <envs />
-    </configuration>
-    <configuration name="tf_pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="results_table" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -301,25 +298,35 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="softmax_tf" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tf_pipeline.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/results_table.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
+    <configuration name="run_pipeline.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run_pipeline.sh" />
+      <option name="PARAMETERS" value="" />
+      <module name="softmax_tf" />
+      <envs />
+    </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.pipeline" />
       <item index="1" class="java.lang.String" itemvalue="Python.plot_results" />
-      <item index="2" class="java.lang.String" itemvalue="Python.tf_pipeline" />
-      <item index="3" class="java.lang.String" itemvalue="Bash.run_pipeline.sh" />
-      <item index="4" class="java.lang.String" itemvalue="Python.Implicit_illustration" />
+      <item index="2" class="java.lang.String" itemvalue="Bash.run_pipeline.sh" />
+      <item index="3" class="java.lang.String" itemvalue="Python.Implicit_illustration" />
+      <item index="4" class="java.lang.String" itemvalue="Python.results_table" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.plot_results" />
-        <item index="1" class="java.lang.String" itemvalue="Python.pipeline" />
-        <item index="2" class="java.lang.String" itemvalue="Python.Implicit_illustration" />
-        <item index="3" class="java.lang.String" itemvalue="Bash.run_pipeline.sh" />
-        <item index="4" class="java.lang.String" itemvalue="Python.tf_pipeline" />
+        <item index="0" class="java.lang.String" itemvalue="Python.results_table" />
+        <item index="1" class="java.lang.String" itemvalue="Python.plot_results" />
+        <item index="2" class="java.lang.String" itemvalue="Python.pipeline" />
+        <item index="3" class="java.lang.String" itemvalue="Python.Implicit_illustration" />
+        <item index="4" class="java.lang.String" itemvalue="Bash.run_pipeline.sh" />
       </list>
     </recent_temporary>
   </component>
@@ -338,14 +345,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="23" y="23" width="1417" height="873" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15808046" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38430172" sideWeight="0.5029387" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36828965" sideWeight="0.49706128" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36828965" sideWeight="0.49706128" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -393,16 +399,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="55" column="0" lean-forward="false" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding>
-            <element signature="e#33#51#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/mnl.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1921">
@@ -790,10 +786,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/plot_results.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="168" column="39" lean-forward="true" selection-start-line="168" selection-start-column="39" selection-end-line="168" selection-end-column="39" />
+        <state relative-caret-position="340">
+          <caret line="173" column="21" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="173" selection-end-column="21" />
           <folding>
             <element signature="e#44#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results_table.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="28" lean-forward="false" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
