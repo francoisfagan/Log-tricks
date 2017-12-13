@@ -18,10 +18,14 @@ class MNLDataset():
         # We can do this directly, or use the pre-computed pickled value
         self.x = list(pickle.load(open(file_name + '_tuple.p', 'rb')))
 
-    def next_batch(self, batch_size):
+    def next_batch(self, batch_size, proportion_data):
         batch_indices = self.batch_index + np.arange(batch_size)
-        batch_indices = np.mod(batch_indices, self.num_examples)
-        self.batch_index = (self.batch_index + batch_size) % self.num_examples
+        # batch_indices = np.mod(batch_indices, self.num_examples)
+        # self.batch_index = (self.batch_index + batch_size) % self.num_examples
+
+        max_example_index = int(self.num_examples * proportion_data)
+        batch_indices = np.mod(batch_indices, max_example_index)
+        self.batch_index = (self.batch_index + batch_size) % max_example_index
 
         return [self.x[batch_indices[0]], self.y[batch_indices], batch_indices]
 

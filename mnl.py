@@ -66,6 +66,54 @@ class Softmax(SGD):
         self.W[x_col_idx, :] -= learning_rate * grad
 
 
+class VanillaSGD(SGD):
+    def update(self, x, y, idx, sampled_classes, learning_rate):
+        """
+        The dimensions of the matrices below is [batch_size] x [num_classes] unless otherwise stated
+        """
+
+        x_row, x_row_idx, x_col_idx, x_val = x
+
+        # Find batch_size and num_sampled
+        sampled_classes = np.setdiff1d(sampled_classes, y)
+        num_sampled = len(sampled_classes)
+
+        # Calculate logit_difference = x_i^\top(w_k-w_{y_i}) for all i in idx and k in sampled_classes
+        logit_sampled = x_row.dot(self.W[:, sampled_classes])  # Dimensions [num_sampled]
+        logit_true = x_row.dot(self.W[:, y])[0, 0]  # Dimensions [1]
+        logit_diff = logit_sampled - logit_true  # Dimensions [num_sampled]
+
+        # Update u. Unlike U-max, it does not have this step.
+
+        # Gradient coefficients
+        scaling = (self.num_classes - 1) / num_sampled
+        coef = scaling * np.exp(logit_diff - self.u[idx])
+        # Dimensions [num_sampled]
+
+        # SGD gradients
+        u_grad = 1 - np.exp(-self.u[idx]) - np.sum(coef, axis=1)  # Dimensions [1]
+        w_sample_grad = coef[x_row_idx, :] * x_val[:, None]  # Dimensions [non-zero entries in x] x [num_samples]
+        w_true_grad = - np.sum(w_sample_grad, axis=1)  # Dimensions [non-zero entries in x]
+        # https://stackoverflow.com/questions/5795700/multiply-numpy-array-of-scalars-by-array-of-vectors
+
+        # Update variables
+        self.u[idx] -= learning_rate * u_grad
+        self.u[idx] = max(0.0, self.u[idx])
+
+        # Update sampled W
+        W_sampled_indices = np.vstack((np.tile(x_col_idx, num_sampled),
+                                       np.repeat(sampled_classes, len(x_col_idx)))).tolist()
+        # Dimensions [non-zero entries in x * num_sampled]
+        grad_sampled_indices = np.vstack((np.tile(np.arange(len(x_col_idx)), num_sampled),
+                                          np.repeat(np.arange(num_sampled), len(x_col_idx)))).tolist()
+        # Dimensions [non-zero entries in x * num_sampled]
+        self.W[W_sampled_indices] -= learning_rate * w_sample_grad[grad_sampled_indices]
+
+        # Update true W
+        self.W[x_col_idx, y] -= learning_rate * w_true_grad
+
+
+
 class Umax(SGD):
     def update(self, x, y, idx, sampled_classes, learning_rate):
         """
@@ -121,6 +169,9 @@ class Umax(SGD):
 
 
 class tilde_Umax(SGD):
+    """
+    Alternative double sum formulation
+    """
     def update(self, x, y, idx, sampled_classes, learning_rate):
         """
         The dimensions of the matrices below is [batch_size] x [num_classes] unless otherwise stated

@@ -23,7 +23,8 @@ def run(dataset_name,
         sgd_name,
         tf_indicator,
         num_sampled,
-        batch_size):
+        batch_size,
+        proportion_data):
     if tf_indicator:
 
         train, test, dim, num_classes, num_train_points = tf_load_data.load_data(dataset_name)
@@ -49,6 +50,8 @@ def run(dataset_name,
     # Since 'Implicit' has a sample size of 1, have more batches if 'Implicit'
     # Number dot products if not implicit divided by if implicit = (num_sampled + 1) / 2
     num_batches = int(num_batches * ((num_sampled + 1) / 2 if sgd_name == 'Implicit' else 1.0))
+    # If only using a fraction of the data, decrease the num_batches per epoch
+    num_batches = int(num_batches * proportion_data)
 
     # Error recording data structures
     train_error = []  # Dimension: [num_repeat] x [num_epochs_record]
@@ -65,7 +68,9 @@ def run(dataset_name,
             print('Initializing')
             sess.run(init)
 
-            if sgd_name == 'Umax':
+            if sgd_name == 'VanillaSGD':
+                sgd = VanillaSGD(dim, num_classes, num_train_points)
+            elif sgd_name == 'Umax':
                 sgd = Umax(dim, num_classes, num_train_points)
             elif sgd_name == 'tilde_Umax':
                 sgd = tilde_Umax(dim, num_classes, num_train_points)
@@ -89,7 +94,7 @@ def run(dataset_name,
 
                     if tf_indicator:
                         # Get next batch
-                        batch_xs, batch_ys = train.next_batch(batch_size)
+                        batch_xs, batch_ys = train.next_batch(batch_size, proportion_data)
 
                         # Run optimization op (backprop) and cost op (to get loss value)
                         if sgd_name != 'softmax':
@@ -109,7 +114,7 @@ def run(dataset_name,
                     else:
 
                         # Get next batch
-                        batch_xs, batch_ys, batch_idx = train.next_batch(batch_size)
+                        batch_xs, batch_ys, batch_idx = train.next_batch(batch_size, proportion_data)
                         sampled_classes = np.random.choice(num_classes,
                                                            size=(1 if sgd_name == 'Implicit' else num_sampled),
                                                            replace=False)

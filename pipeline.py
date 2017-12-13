@@ -17,17 +17,19 @@ learning_rate_epoch_decrease = 0.9
 epochs = 50
 num_epochs_record = 20
 batch_size = 100  # For numpy methods batch_size = 1 always
+proportion_data = 1  # If =1 the use all of the data, else use a subset. For parameter tuning purposes.
 num_sampled = 5
 num_repeat = 1
-sgd_name = 'Umax'
+sgd_name = 'Implicit' #VanillaSGD
 dataset_name = 'Bibtex' # 'Eurlex' #'wikiSmall'
-custom_learning_rate = True  # Indicate to use custom optimal learning rate for Eurlex for each algorithm
+custom_learning_rate = False  # Indicate to use custom optimal learning rate for Eurlex for each algorithm
 
 # Read in parameters if passed in from the command line
 if len(sys.argv) > 1:
     sgd_name = sys.argv[1]
     dataset_name = sys.argv[2]
     initial_learning_rate = 10 ** float(sys.argv[3])
+    proportion_data = float(sys.argv[4])
 
 # Set custom learning rate for given algorithm
 if custom_learning_rate:
@@ -64,9 +66,10 @@ record = run(dataset_name,
              sgd_name,
              tf_indicator,
              num_sampled,
-             batch_size)
+             batch_size,
+             proportion_data)
 
-file_name = './Results/' + sgd_name + '_' + dataset_name + '_' + str(initial_learning_rate) + '.p'
+file_name = './Results/' + sgd_name + '_' + dataset_name + '_lr_' + str(initial_learning_rate) + '_prop_data_' + str(proportion_data) + '.p'
 pickle.dump(record, open(file_name, 'wb'))
 
 # Print how long the program took

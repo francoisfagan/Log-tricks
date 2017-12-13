@@ -9,8 +9,9 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 from pathlib import Path
 
-dataset_name = 'Eurlex' #'AmazonCat' #'wiki10'  #'mnist' #'Delicious'  #'wikiSmall' #'Bibtex'  #
-sgd_name = 'single_nce'#'ove'#'nce' #'sampled_softmax'#'Umax'#'tilde_Umax'#'Implicit'#
+dataset_name = 'Bibtex'  # 'Eurlex' #'AmazonCat' #'wiki10'  #'mnist' #'Delicious'  #'wikiSmall' #
+sgd_name = 'Implicit'  # 'single_nce'#'ove'#'nce' #'sampled_softmax'#'Umax'#'tilde_Umax'#
+proportion_data = 0.1
 
 # Indicate whether to plot train and/or test results
 disp_train = True
@@ -31,7 +32,7 @@ iterate_list = sgd_names if iterate_SGD_True_LR_False else initial_learning_rate
 # Set color spectrum of lines
 cmap = plt.get_cmap('jet_r')
 linewidth = 0.5
-figsize=(3, 3)  # Was (3, 3) for the plots in the main part of the paper
+figsize = (3, 3)  # Was (3, 3) for the plots in the main part of the paper
 
 # Indicate to use custom optimal learning rate for Eurlex for each algorithm
 custom_learning_rate = False
@@ -92,10 +93,9 @@ for error0_loss1 in [0, 1]:
             else:
                 marker = '.'
 
-
-
             # Open the file (if it exists)
-            file_name = './Results/Complete/' + sgd_name + '_' + dataset_name + '_' + str(initial_learning_rate) + '.p'
+            file_name = './Results/' + sgd_name + '_' + dataset_name + '_lr_' + str(  # /Complete/
+                initial_learning_rate) + '_prop_data_' + str(proportion_data) + '.p'
             if Path(file_name).is_file():
                 with open(file_name, 'rb') as f:
                     print(file_name)
