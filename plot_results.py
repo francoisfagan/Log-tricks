@@ -9,8 +9,8 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 from pathlib import Path
 
-dataset_name = 'AmazonCat' #'wikiSmall' #'Delicious'  #'wiki10'  #'mnist' #'Eurlex' #'Bibtex'  #
-sgd_name = 'nce' #'ove' #'sampled_softmax' #'Implicit' #'Umax'#'VanillaSGD' #
+dataset_name = 'wikiSmall' #'AmazonCat' #'Delicious'  #'wiki10'  #'mnist' #'Eurlex' #'Bibtex'  #
+sgd_name = 'sampled_softmax' #'nce' #'ove' #'Implicit' #'Umax'#'VanillaSGD' #
 # 'single_nce'#'tilde_Umax'#
 proportion_data = 0.1
 
