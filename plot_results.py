@@ -9,8 +9,9 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 from pathlib import Path
 
-dataset_name = 'Bibtex'  # 'Eurlex' #'AmazonCat' #'wiki10'  #'mnist' #'Delicious'  #'wikiSmall' #
-sgd_name = 'Implicit'  # 'single_nce'#'ove'#'nce' #'sampled_softmax'#'Umax'#'tilde_Umax'#
+dataset_name = 'AmazonCat' #'wikiSmall' #'Delicious'  #'wiki10'  #'mnist' #'Eurlex' #'Bibtex'  #
+sgd_name = 'nce' #'ove' #'sampled_softmax' #'Implicit' #'Umax'#'VanillaSGD' #
+# 'single_nce'#'tilde_Umax'#
 proportion_data = 0.1
 
 # Indicate whether to plot train and/or test results
@@ -94,11 +95,11 @@ for error0_loss1 in [0, 1]:
                 marker = '.'
 
             # Open the file (if it exists)
-            file_name = './Results/' + sgd_name + '_' + dataset_name + '_lr_' + str(  # /Complete/
+            file_name = './Results/Complete/' + sgd_name + '_' + dataset_name + '_lr_' + str(  # /Complete/
                 initial_learning_rate) + '_prop_data_' + str(proportion_data) + '.p'
+            print(file_name)
             if Path(file_name).is_file():
                 with open(file_name, 'rb') as f:
-                    print(file_name)
 
                     # Gather the results
                     results = pickle.load(f)
@@ -119,7 +120,7 @@ for error0_loss1 in [0, 1]:
                     # Display mean and standard deviation
                     displays = (['train'] if disp_train else []) + (['test'] if disp_test else [])
                     for display in displays:
-                        train_mean = np.mean(results[display][:, :, error0_loss1], axis=0)[::2]
+                        train_mean = np.log(np.mean(results[display][:, :, error0_loss1], axis=0)[::2])
                         train_std = np.std(np.array(results[display][:, :, error0_loss1]), axis=0)[::2]
                         p = plt.errorbar(epochs,
                                          train_mean,

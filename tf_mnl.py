@@ -207,8 +207,17 @@ def graph(dim, num_classes, num_train_points, num_sampled):
 
 def error(x, y_one_hot, W, b, data, num_classes):
     tf_logits = tf.nn.softmax(tf.matmul(x, W) + b)
-    logits = tf_logits.eval({x: data.x, y_one_hot: one_hot(data.y, num_classes)})
-    return error_log_loss(logits, data.y[:, 0])
+    n_chunks = 100  # So that memory doesn't overflow
+    error_log_loss_cum = np.array([0.0, 0.0])
+    num_points_per_chunk = int(data.x.shape[0] / n_chunks)
+    for chunk in range(n_chunks):
+        logits = tf_logits.eval({x: data.x[num_points_per_chunk * chunk:num_points_per_chunk * (chunk + 1), :],
+                                 y_one_hot: one_hot(
+                                     data.y[num_points_per_chunk * chunk:num_points_per_chunk * (chunk + 1), :],
+                                     num_classes)})
+        error_log_loss_cum += error_log_loss(logits,
+                                             data.y[num_points_per_chunk * chunk:num_points_per_chunk * (chunk + 1), 0])
+    return list(error_log_loss_cum / n_chunks)
 
 
 def get_cost(cost_name, num_classes, num_sampled, x, y, y_one_hot, W, b, learning_rate):

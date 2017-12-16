@@ -2,8 +2,14 @@
 
 For each dataset:
 For each method:
-- Run SGD for learning rates: 10^{-4,...,4} for 10% of the data for 50 epochs.
+- Run SGD for learning rates: 10^{-3,...,3} for 10% of the data for 50 epochs.
 - Take the optimal learning rate and use that for the full data
 
 1. Get all of the experiments running
 2. Work out how to plot new learning rates
+
+
+
+	Need to complete
+Vanilla: 'wikiSmall'
+ove, sampled_softmax, nce: 'AmazonCat', 'wikiSmall' 'wiki10' 'Delicious'
