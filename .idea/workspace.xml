@@ -1,7 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d932a138-bc3e-4836-89d0-79e375b2c988" name="Default" comment="" />
+    <list default="true" id="d932a138-bc3e-4836-89d0-79e375b2c988" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/convolve.pyx" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/implicit_cy.pyx" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/VanillaSGD_wiki10_lr_0.001_prop_data_1.0.p" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/sampled_softmax_Bibtex_lr_100.0_prop_data_1.0.p" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Results/Complete/sampled_softmax_wikiSmall_lr_0.001_prop_data_0.1.p" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Results/Complete/sampled_softmax_wikiSmall_lr_0.01_prop_data_0.1.p" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Results/Complete/sampled_softmax_wikiSmall_lr_0.1_prop_data_0.1.p" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Results/Complete/sampled_softmax_wikiSmall_lr_1.0_prop_data_0.1.p" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Results/Complete/sampled_softmax_wikiSmall_lr_10.0_prop_data_0.1.p" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Results/Complete/sampled_softmax_wikiSmall_lr_100.0_prop_data_0.1.p" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Results/Complete/sampled_softmax_wikiSmall_lr_1000.0_prop_data_0.1.p" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/AmazonCat_custom_lr_error.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/AmazonCat_custom_lr_error.pdf" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/AmazonCat_custom_lr_loss.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/AmazonCat_custom_lr_loss.pdf" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Bibtex_custom_lr_error.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Bibtex_custom_lr_error.pdf" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Bibtex_custom_lr_loss.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Bibtex_custom_lr_loss.pdf" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Delicious_custom_lr_error.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Delicious_custom_lr_error.pdf" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Delicious_custom_lr_loss.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Delicious_custom_lr_loss.pdf" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Eurlex_custom_lr_error.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Eurlex_custom_lr_error.pdf" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Eurlex_custom_lr_loss.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Eurlex_custom_lr_loss.pdf" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/mnist_custom_lr_error.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/mnist_custom_lr_error.pdf" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/mnist_custom_lr_loss.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/mnist_custom_lr_loss.pdf" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/wiki10_custom_lr_error.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/wiki10_custom_lr_error.pdf" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/wiki10_custom_lr_loss.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/wiki10_custom_lr_loss.pdf" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/wikiSmall_custom_lr_error.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/wikiSmall_custom_lr_error.pdf" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/wikiSmall_custom_lr_loss.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/wikiSmall_custom_lr_loss.pdf" />
+      <change beforePath="$PROJECT_DIR$/implicit.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/is.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/mnl.py" afterPath="$PROJECT_DIR$/mnl.py" />
+      <change beforePath="$PROJECT_DIR$/nce.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/ove.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/pipeline.py" afterPath="$PROJECT_DIR$/pipeline.py" />
+      <change beforePath="$PROJECT_DIR$/plot_results.py" afterPath="$PROJECT_DIR$/plot_results.py" />
+      <change beforePath="$PROJECT_DIR$/results_table.py" afterPath="$PROJECT_DIR$/results_table.py" />
+      <change beforePath="$PROJECT_DIR$/run.py" afterPath="$PROJECT_DIR$/run.py" />
+      <change beforePath="$PROJECT_DIR$/scrap.py" afterPath="$PROJECT_DIR$/scrap.py" />
+      <change beforePath="$PROJECT_DIR$/tf.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/umax.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vanilla.sh" afterPath="" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,41 +51,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="run_pipeline.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/run_pipeline.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="37" lean-forward="false" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="umax.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/umax.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tf.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tf.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="51" lean-forward="true" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+            <state relative-caret-position="136">
+              <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
               <folding>
                 <element signature="e#79#98#0" expanded="true" />
               </folding>
@@ -56,63 +66,52 @@
       <file leaf-file-name="run.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="4" column="8" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mnl.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/mnl.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="18" />
+            <state relative-caret-position="829">
+              <caret line="53" column="25" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
               <folding>
-                <element signature="e#675#1532#0" expanded="false" />
-                <element signature="e#1559#2633#0" expanded="false" />
-                <element signature="e#10250#11949#0" expanded="false" />
+                <element signature="e#33#51#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tf_mnl.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tf_mnl.py">
+      <file leaf-file-name="mnl.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/mnl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="55">
-              <caret line="209" column="17" lean-forward="false" selection-start-line="209" selection-start-column="17" selection-end-line="209" selection-end-column="17" />
+            <state relative-caret-position="540">
+              <caret line="286" column="40" lean-forward="false" selection-start-line="286" selection-start-column="40" selection-end-line="286" selection-end-column="40" />
+              <folding>
+                <element signature="e#83#101#0" expanded="true" />
+                <element signature="e#237#686#0" expanded="false" />
+                <element signature="e#704#1563#0" expanded="false" />
+                <element signature="e#1590#2664#0" expanded="false" />
+                <element signature="e#2694#4809#0" expanded="false" />
+                <element signature="e#4833#7436#0" expanded="false" />
+                <element signature="e#7466#10243#0" expanded="false" />
+                <element signature="e#14651#15702#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="scrap.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scrap.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="141">
+              <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="71" selection-end-column="15" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tf_load_data.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tf_load_data.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="33" column="39" lean-forward="false" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plot_results.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="plot_results.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/plot_results.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="implicit.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/implicit.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="43" />
-              <folding />
+            <state relative-caret-position="2703">
+              <caret line="165" column="52" lean-forward="false" selection-start-line="165" selection-start-column="52" selection-end-line="165" selection-end-column="52" />
+              <folding>
+                <element signature="e#44#57#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,8 +127,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>print_function</find>
-      <find>sampled_softmax</find>
       <find>average</find>
       <find>&quot;</find>
       <find>accuracy</find>
@@ -154,7 +151,12 @@
       <find>sgd</find>
       <find>error_log_loss</find>
       <find>error</find>
+      <find>error0_loss1</find>
+      <find>custom_learning_rate</find>
+      <find>initial_learning_rate</find>
+      <find>num_sampled</find>
       <find>print</find>
+      <find>self.f1</find>
     </findStrings>
     <replaceStrings>
       <replace>sampled_loss</replace>
@@ -181,34 +183,40 @@
         <option value="$PROJECT_DIR$/mnl_costs.py" />
         <option value="$PROJECT_DIR$/word2vec.py" />
         <option value="$PROJECT_DIR$/load.py" />
-        <option value="$PROJECT_DIR$/scrap.py" />
         <option value="$PROJECT_DIR$/tf_pipeline.py" />
         <option value="$PROJECT_DIR$/tf_run.py" />
         <option value="$PROJECT_DIR$/Implicit_illustration.py" />
-        <option value="$PROJECT_DIR$/results_table.py" />
-        <option value="$PROJECT_DIR$/mnl.py" />
         <option value="$PROJECT_DIR$/load_data.py" />
         <option value="$PROJECT_DIR$/tf_load_data.py" />
-        <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/umax.sh" />
         <option value="$PROJECT_DIR$/nce.sh" />
         <option value="$PROJECT_DIR$/implicit.sh" />
-        <option value="$PROJECT_DIR$/vanilla.sh" />
         <option value="$PROJECT_DIR$/ove.sh" />
         <option value="$PROJECT_DIR$/is.sh" />
         <option value="$PROJECT_DIR$/tf.sh" />
-        <option value="$PROJECT_DIR$/pipeline.py" />
         <option value="$PROJECT_DIR$/tf_mnl.py" />
         <option value="$PROJECT_DIR$/run_pipeline.sh" />
+        <option value="$PROJECT_DIR$/results_table.py" />
+        <option value="$PROJECT_DIR$/Old_bash_scripts/umax.sh" />
+        <option value="$PROJECT_DIR$/Old_bash_scripts/implicit.sh" />
+        <option value="$PROJECT_DIR$/Old_bash_scripts/vanilla.sh" />
+        <option value="$PROJECT_DIR$/vanilla.sh" />
+        <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/convolve.pyx" />
+        <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/plot_results.py" />
+        <option value="$PROJECT_DIR$/scrap.py" />
+        <option value="$PROJECT_DIR$/implicit_cy.pyx" />
+        <option value="$PROJECT_DIR$/pipeline.py" />
+        <option value="$PROJECT_DIR$/mnl.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="38" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-1" />
     <option name="y" value="23" />
-    <option name="width" value="1438" />
-    <option name="height" value="1177" />
+    <option name="width" value="1047" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -247,6 +255,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -258,8 +268,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -278,8 +286,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.plot_results">
-    <configuration name="Implicit_illustration" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.pipeline">
+    <configuration name="mnl" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -291,10 +299,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="softmax_tf" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Implicit_illustration.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mnl.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
     </configuration>
     <configuration name="pipeline" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -312,6 +321,7 @@
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
     </configuration>
     <configuration name="plot_results" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -329,8 +339,27 @@
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="results_table" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="plotting_mnist_data" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Dropbox/Columbia/Courses/Deep learning/Week2" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="softmax_tf" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Dropbox/Columbia/Courses/Deep learning/Week2/plotting_mnist_data.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="setup" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -342,40 +371,34 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="softmax_tf" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/results_table.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/setup.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
-    <configuration name="run_pipeline.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="INTERPRETER_PATH" value="/bin/bash" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run_pipeline.sh" />
-      <option name="PARAMETERS" value="" />
-      <module name="softmax_tf" />
-      <envs />
+      <option name="MODULE_MODE" value="false" />
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.pipeline" />
       <item index="1" class="java.lang.String" itemvalue="Python.plot_results" />
-      <item index="2" class="java.lang.String" itemvalue="Bash.run_pipeline.sh" />
-      <item index="3" class="java.lang.String" itemvalue="Python.Implicit_illustration" />
-      <item index="4" class="java.lang.String" itemvalue="Python.results_table" />
+      <item index="2" class="java.lang.String" itemvalue="Python.mnl" />
+      <item index="3" class="java.lang.String" itemvalue="Python.plotting_mnist_data" />
+      <item index="4" class="java.lang.String" itemvalue="Python.setup" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.plot_results" />
-        <item index="1" class="java.lang.String" itemvalue="Python.pipeline" />
-        <item index="2" class="java.lang.String" itemvalue="Python.results_table" />
-        <item index="3" class="java.lang.String" itemvalue="Python.Implicit_illustration" />
-        <item index="4" class="java.lang.String" itemvalue="Bash.run_pipeline.sh" />
+        <item index="0" class="java.lang.String" itemvalue="Python.pipeline" />
+        <item index="1" class="java.lang.String" itemvalue="Python.mnl" />
+        <item index="2" class="java.lang.String" itemvalue="Python.setup" />
+        <item index="3" class="java.lang.String" itemvalue="Python.plot_results" />
+        <item index="4" class="java.lang.String" itemvalue="Python.plotting_mnist_data" />
       </list>
     </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -388,20 +411,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <frame x="-1" y="23" width="1047" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15555556" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17000955" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38414633" sideWeight="0.5029387" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32173914" sideWeight="0.49706128" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2571138" sideWeight="0.49706128" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4923077" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36178863" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -409,6 +431,7 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -436,147 +459,28 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mnl.py</url>
+          <line>303</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="27" />
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+      <option name="time" value="49" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#79#98#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mnl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1921">
-          <caret line="485" column="27" lean-forward="false" selection-start-line="485" selection-start-column="27" selection-end-line="485" selection-end-column="27" />
-          <folding>
-            <element signature="e#208#657#0" expanded="false" />
-            <element signature="e#675#1532#0" expanded="false" />
-            <element signature="e#1559#2633#0" expanded="false" />
-            <element signature="e#10250#11949#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/load_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="56" column="46" lean-forward="false" selection-start-line="56" selection-start-column="46" selection-end-line="56" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plot_results.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding>
-            <element signature="e#44#57#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#79#98#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mnl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1921">
-          <caret line="485" column="27" lean-forward="false" selection-start-line="485" selection-start-column="27" selection-end-line="485" selection-end-column="27" />
-          <folding>
-            <element signature="e#208#657#0" expanded="false" />
-            <element signature="e#675#1532#0" expanded="false" />
-            <element signature="e#1559#2633#0" expanded="false" />
-            <element signature="e#10250#11949#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/load_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="935">
-          <caret line="56" column="46" lean-forward="true" selection-start-line="56" selection-start-column="46" selection-end-line="56" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plot_results.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding>
-            <element signature="e#44#57#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#79#98#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mnl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7973">
-          <caret line="469" column="0" lean-forward="false" selection-start-line="469" selection-start-column="0" selection-end-line="469" selection-end-column="0" />
-          <folding>
-            <element signature="e#208#657#0" expanded="false" />
-            <element signature="e#675#1532#0" expanded="false" />
-            <element signature="e#1559#2633#0" expanded="false" />
-            <element signature="e#10250#11949#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/load_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="37" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-          <folding>
-            <element signature="e#79#98#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mnl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="207" column="12" lean-forward="false" selection-start-line="207" selection-start-column="12" selection-end-line="207" selection-end-column="12" />
-          <folding>
-            <element signature="e#208#657#0" expanded="false" />
-            <element signature="e#675#1532#0" expanded="false" />
-            <element signature="e#1559#2633#0" expanded="false" />
-            <element signature="e#10250#11949#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/load_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="952">
@@ -588,7 +492,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1088">
           <caret line="65" column="33" lean-forward="true" selection-start-line="65" selection-start-column="33" selection-end-line="65" selection-end-column="33" />
-          <folding />
+          <folding>
+            <element signature="e#33#51#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -606,7 +512,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="884">
           <caret line="53" column="64" lean-forward="false" selection-start-line="53" selection-start-column="64" selection-end-line="53" selection-end-column="64" />
-          <folding />
+          <folding>
+            <element signature="e#33#51#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -622,10 +530,14 @@
         <state relative-caret-position="323">
           <caret line="21" column="22" lean-forward="false" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
           <folding>
-            <element signature="e#208#657#0" expanded="false" />
-            <element signature="e#675#1532#0" expanded="false" />
-            <element signature="e#1559#2633#0" expanded="false" />
-            <element signature="e#10250#11949#0" expanded="false" />
+            <element signature="e#83#101#0" expanded="true" />
+            <element signature="e#237#686#0" expanded="false" />
+            <element signature="e#704#1563#0" expanded="false" />
+            <element signature="e#1590#2664#0" expanded="false" />
+            <element signature="e#2694#4809#0" expanded="false" />
+            <element signature="e#4833#7436#0" expanded="false" />
+            <element signature="e#7466#10243#0" expanded="false" />
+            <element signature="e#14651#15702#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -655,13 +567,6 @@
     <entry file="file://$PROJECT_DIR$/word2vec.py" />
     <entry file="file://$PROJECT_DIR$/load.py" />
     <entry file="file://$PROJECT_DIR$/u_dist.py" />
-    <entry file="file://$PROJECT_DIR$/scrap.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/old_run.py" />
     <entry file="file://$PROJECT_DIR$/old_mnl.py" />
     <entry file="file://$PROJECT_DIR$/old_pipeline.py" />
@@ -687,70 +592,174 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/is.sh" />
+    <entry file="file://$PROJECT_DIR$/nce.sh" />
+    <entry file="file://$PROJECT_DIR$/ove.sh" />
+    <entry file="file://$PROJECT_DIR$/tf_run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="13" column="93" lean-forward="false" selection-start-line="13" selection-start-column="88" selection-end-line="13" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_load_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="33" column="39" lean-forward="false" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf_mnl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3417">
+          <caret line="209" column="17" lean-forward="false" selection-start-line="209" selection-start-column="17" selection-end-line="209" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tf.sh" />
+    <entry file="file://$PROJECT_DIR$/umax.sh" />
+    <entry file="file://$PROJECT_DIR$/run_pipeline.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="12" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/results_table.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="28" lean-forward="false" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#13#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="442">
+          <caret line="29" column="55" lean-forward="false" selection-start-line="29" selection-start-column="55" selection-end-line="29" selection-end-column="55" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/load_data.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="15" column="67" lean-forward="true" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
-          <folding />
+          <caret line="15" column="67" lean-forward="false" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/is.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="20" lean-forward="true" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nce.sh">
+    <entry file="file://$USER_HOME$/Dropbox/Columbia/Courses/Deep learning/Week2/logistic_regression_no_hidden_layer.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="11" lean-forward="true" selection-start-line="0" selection-start-column="11" selection-end-line="7" selection-end-column="37" />
-          <folding />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ove.sh">
+    <entry file="file://$USER_HOME$/Dropbox/Columbia/Courses/Deep learning/Week2/plotting_mnist_data_Keras.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="31" column="14" lean-forward="false" selection-start-line="31" selection-start-column="14" selection-end-line="31" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Dropbox/Columbia/Courses/Deep learning/Week2/plotting_mnist_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="39" column="19" lean-forward="false" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Dropbox/Columbia/Courses/Deep learning/Week2/sharingVariables2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="11" lean-forward="true" selection-start-line="0" selection-start-column="11" selection-end-line="7" selection-end-column="37" />
-          <folding />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanilla.sh">
+    <entry file="file://$USER_HOME$/Dropbox/Columbia/Courses/Deep learning/Week2/sharingVariables3.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Dropbox/Columbia/Courses/Deep learning/Week2/sharingVariables1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Dropbox/Columbia/Courses/Deep learning/Week2/example_Keras.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Old_bash_scripts/umax.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="39" lean-forward="true" selection-start-line="4" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Old_bash_scripts/implicit.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="38" lean-forward="false" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Old_bash_scripts/vanilla.sh" />
+    <entry file="file://$PROJECT_DIR$/vanilla.sh" />
+    <entry file="file://$PROJECT_DIR$/implicit.sh" />
+    <entry file="file://$PROJECT_DIR$/convolve.pyx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="62" lean-forward="true" selection-start-line="28" selection-start-column="62" selection-end-line="28" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plot_results.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2703">
+          <caret line="165" column="52" lean-forward="false" selection-start-line="165" selection-start-column="52" selection-end-line="165" selection-end-column="52" />
+          <folding>
+            <element signature="e#44#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="829">
+          <caret line="53" column="25" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding>
+            <element signature="e#33#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="6" column="42" lean-forward="false" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tf_run.py">
+    <entry file="file://$PROJECT_DIR$/implicit_cy.pyx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="13" column="93" lean-forward="false" selection-start-line="13" selection-start-column="88" selection-end-line="13" selection-end-column="93" />
-          <folding>
-            <element signature="e#33#56#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="306">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scrap.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="71" selection-end-column="15" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pipeline.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="14" column="26" lean-forward="false" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+        <state relative-caret-position="136">
+          <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
           <folding>
             <element signature="e#79#98#0" expanded="true" />
           </folding>
@@ -759,77 +768,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/mnl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="18" />
+        <state relative-caret-position="540">
+          <caret line="286" column="40" lean-forward="false" selection-start-line="286" selection-start-column="40" selection-end-line="286" selection-end-column="40" />
           <folding>
-            <element signature="e#675#1532#0" expanded="false" />
-            <element signature="e#1559#2633#0" expanded="false" />
-            <element signature="e#10250#11949#0" expanded="false" />
+            <element signature="e#83#101#0" expanded="true" />
+            <element signature="e#237#686#0" expanded="false" />
+            <element signature="e#704#1563#0" expanded="false" />
+            <element signature="e#1590#2664#0" expanded="false" />
+            <element signature="e#2694#4809#0" expanded="false" />
+            <element signature="e#4833#7436#0" expanded="false" />
+            <element signature="e#7466#10243#0" expanded="false" />
+            <element signature="e#14651#15702#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="4" column="8" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tf_load_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="33" column="39" lean-forward="false" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tf_mnl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="209" column="17" lean-forward="false" selection-start-line="209" selection-start-column="17" selection-end-line="209" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/umax.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/implicit.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run_pipeline.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="37" lean-forward="false" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tf.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="51" lean-forward="true" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plot_results.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="13" column="28" lean-forward="true" selection-start-line="13" selection-start-column="28" selection-end-line="13" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>

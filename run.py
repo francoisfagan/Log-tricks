@@ -9,6 +9,7 @@ import numpy as np
 from tf_load_data import load_data
 from tf_mnl import *
 import tensorflow as tf
+import time
 
 import tf_load_data
 import load_data
@@ -58,6 +59,8 @@ def run(dataset_name,
     test_error = []  # Dimension: [num_repeat] x [num_epochs_record]
     epochs_recorded = []  # Dimension: [num_repeat] x [num_epochs_record]
 
+    # Start timing
+    t0 = time.time()
     for repeat in range(num_repeat):
         print('\nRepetition: ', repeat)
         # Initialize the variables (i.e. assign their default value)
@@ -78,6 +81,8 @@ def run(dataset_name,
                 sgd = Softmax(dim, num_classes, num_train_points)
             elif sgd_name == 'Implicit':
                 sgd = Implicit(dim, num_classes, num_train_points)
+            elif sgd_name == 'Implicit_simple':
+                sgd = Implicit_simple(dim, num_classes, num_train_points)
 
             # Prepare new records
             train_error.append([])
@@ -116,16 +121,18 @@ def run(dataset_name,
                         # Get next batch
                         batch_xs, batch_ys, batch_idx = train.next_batch(batch_size, proportion_data)
                         sampled_classes = np.random.choice(num_classes,
-                                                           size=(1 if sgd_name == 'Implicit' else num_sampled),
+                                                           size=(1 if sgd_name in {'Implicit', 'Implicit_simple'} else num_sampled),
                                                            replace=False)
 
-                        # Take sgd step
-                        sgd.update(batch_xs,
-                                   batch_ys,
-                                   batch_idx,
-                                   sampled_classes,
-                                   initial_learning_rate * (learning_rate_epoch_decrease ** epoch)
-                                   )
+                        if len(sampled_classes) > 1 or sampled_classes != batch_ys:
+                            # If sampled_classes = batch_ys then no step
+                            # Take sgd step
+                            sgd.update(batch_xs,
+                                       batch_ys,
+                                       batch_idx,
+                                       sampled_classes,
+                                       initial_learning_rate * (learning_rate_epoch_decrease ** epoch)
+                                       )
 
                 # Record and display loss once each epoch
                 if (epoch + 1) % (epochs // num_epochs_record) == 0:
@@ -144,6 +151,10 @@ def run(dataset_name,
                           )
 
         print('Optimization Finished!')
+
+    # Print how long the program took
+    t1 = time.time()
+    print('Time: ', t1 - t0)
 
     # Save results
     record = {'test': np.array(test_error),

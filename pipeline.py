@@ -4,24 +4,20 @@ Author: Francois Fagan
 """
 
 from run import run
-import time
 import sys
 import pickle
-
-# Start timing
-t0 = time.time()
 
 # Parameters (in the future can pass these in from the command line)
 initial_learning_rate = 0.1
 learning_rate_epoch_decrease = 0.9
-epochs = 50
-num_epochs_record = 20
+epochs = 1
+num_epochs_record = 1
 batch_size = 100  # For numpy methods batch_size = 1 always
 proportion_data = 1  # If =1 the use all of the data, else use a subset. For parameter tuning purposes.
 num_sampled = 5
 num_repeat = 1
-sgd_name = 'nce' #VanillaSGD
-dataset_name = 'Bibtex' # 'Eurlex' #'wikiSmall'
+sgd_name = 'Implicit' #'VanillaSGD' #_simple
+dataset_name = 'mnist'
 custom_learning_rate = False  # Indicate to use custom optimal learning rate for Eurlex for each algorithm
 
 # Read in parameters if passed in from the command line
@@ -52,7 +48,7 @@ print('initial_learning_rate', initial_learning_rate)
 # for sgd_name in ['sampled_softmax']:
 #     # 'Implicit', 'Umax', 'sampled_softmax', 'nce', 'ove', ### 'Softmax', 'tf_softmax'
 #     for dataset_name in ['Bibtex']:
-# 'wikiSmall'  # 'AmazonCat'  # 'wiki10'  # 'Eurlex'  # 'mnist'  # 'Delicious'
+# 'wikiSmall'  # 'wiki10'  # 'Eurlex'  # 'mnist'  # 'Delicious'
 print(sgd_name, dataset_name)
 tf_indicator = sgd_name in {'sampled_softmax', 'tf_softmax', 'nce', 'ove'}
 
@@ -71,7 +67,3 @@ record = run(dataset_name,
 
 file_name = './Results/' + sgd_name + '_' + dataset_name + '_lr_' + str(initial_learning_rate) + '_prop_data_' + str(proportion_data) + '.p'
 pickle.dump(record, open(file_name, 'wb'))
-
-# Print how long the program took
-t1 = time.time()
-print('Time', t1 - t0)

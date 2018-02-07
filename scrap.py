@@ -1,3 +1,147 @@
+# Unpack the data
+x_row, x_row_idx, x_col_idx, x_val = x
+
+# Calculate values to feed into the f1 function
+x_norm = x_val.dot(x_val)
+x_dot_W = x_row.dot(self.W[:, sampled_classes] - self.W[:, y])[0, 0]
+multiplier = (x_dot_W
+              + np.log(2 * learning_rate * (self.num_classes - 1) * x_norm))
+
+# Calculate upper and lower bounds for Brent's method
+if f1(self.u[idx], multiplier, x_norm, learning_rate, self.u[idx]) < 0:
+    bounds = (self.u[idx][0],
+              np.log(1 + (self.num_classes - 1)
+                     * np.exp(x_dot_W))
+              )
+else:
+    bounds = (max(0.0,
+                  np.log(self.num_classes - 1)
+                  + x_dot_W
+                  - 2 * learning_rate * x_norm),
+              self.u[idx][0]
+              )
+
+# Calculate optimal u and a values
+u_optimal = self.u[idx]
+u_optimal = brentq(f1,
+                   bounds[0], bounds[1],
+                   args=(multiplier, x_norm, learning_rate, self.u[idx])
+                   )
+a_optimal = self.a(u_optimal, multiplier)
+
+# Update variables
+self.u[idx] = max(0.0, u_optimal)
+self.W[x_col_idx, sampled_classes] -= a_optimal * x_val / (2 * x_norm)
+self.W[x_col_idx, y] += a_optimal * x_val / (2 * x_norm)
+
+
+
+
+
+
+
+
+
+
+small_argument = (x_dot_W - self.u[idx][0]) < 15
+if f1(self.u[idx], multiplier, x_norm, learning_rate, self.u[idx]) < 0:
+    bounds = (self.u[idx][0],
+              self.u[idx][0] - learning_rate
+              + (np.real(lambertw(learning_rate
+                                  * np.exp(learning_rate - self.u[idx][0])
+                                  * (1 + (self.num_classes - 1)
+                                     * np.exp(x_dot_W))))
+                 if small_argument else
+                 (np.log(learning_rate)
+                  + learning_rate - self.u[idx][0]
+                  + np.log(self.num_classes - 1)
+                  + x_dot_W)
+                 )
+              + 1e-3  # Need to avoid rounding errors
+              )
+else:
+    bounds = (max(0.0,
+                  self.u[idx][0] - learning_rate
+                  + np.real(lambertw(learning_rate
+                                     * np.exp(learning_rate - self.u[idx][0])
+                                     * (1 + (self.num_classes - 1)
+                                        * np.exp(x_dot_W - 2 * learning_rate * x_norm))))
+                  - 1e-3  # Need to avoid rounding errors
+                  ),
+              self.u[idx][0]
+              )
+
+# if (f1(bounds[0], multiplier, x_norm, learning_rate, self.u[idx])
+#         * f1(bounds[1], multiplier, x_norm, learning_rate, self.u[idx])
+#         > 0):
+#     print(self.u[idx][0],
+#           bounds,
+#           f1(bounds[0], multiplier, x_norm, learning_rate, self.u[idx]),
+#           f1(bounds[1], multiplier, x_norm, learning_rate, self.u[idx]))
+
+# # Old bounds
+
+
+
+
+# Calculate values to feed into the f1 function
+x_norm = x_val.dot(x_val)
+x_dot_W = x_row.dot(self.W[:, sampled_classes] - x_row.dot(self.W[:, y]))[0, 0]
+multiplier = (x_dot_W + np.log(2 * learning_rate * (self.num_classes - 1) * x_norm))
+
+# Calculate upper and lower bounds for Brent's method
+# if f1(self.u[idx], multiplier, x_norm, learning_rate, self.u[idx]) < 0:
+#     bounds = (self.u[idx][0],
+#               self.u[idx][0] + robust_lambert_w_exp() - learning_rate
+#               )
+# else:
+#     bounds = (max(0.0,
+#                   np.log(self.num_classes - 1)
+#                   + x_dot_W
+#                   - 2 * learning_rate * x_norm),
+#               self.u[idx][0]
+#               )
+
+# # Older weaker bounds
+if f1(self.u[idx], multiplier, x_norm, learning_rate, self.u[idx]) < 0:
+    bounds = (self.u[idx][0],
+              np.log(1 + (self.num_classes - 1) * np.exp(x_dot_W))
+              )
+else:
+    bounds = (max(0.0,
+                  np.log(self.num_classes - 1)
+                  + x_dot_W
+                  - 2 * learning_rate * x_norm),
+              self.u[idx][0]
+              )
+
+
+
+
+
+# u_optimal = newton(f1, max(self.u[idx], multiplier), fprime=f2, maxiter=200) # Newton's method
+
+# def f0(u_temp):
+#     """Zeroth derivative of u equation"""
+#     a_temp = a(u_temp)
+#     return (2 * learning_rate * u_temp
+#             + 2 * learning_rate * np.exp(-u_temp)
+#             + a_temp / x_norm
+#             + (u_temp - self.u[idx]) ** 2
+#             + a_temp ** 2 / (2 * x_norm)
+#             )
+
+
+# def f2(u_temp):
+#     """Second derivative of u equation"""
+#     a_temp = a(u_temp)
+#     return (2 * learning_rate * np.exp(-u_temp)
+#             + a_temp / (1 + a_temp) ** 3 / x_norm
+#             + 2
+#             + a_temp ** 2 * (2 + a_temp) / (1 + a_temp) ** 3 / x_norm
+#             )
+
+
 # def update(self, x, y, idx, sampled_classes, learning_rate):
 #     """
 #     The dimensions of the matrices below is [batch_size] x [num_classes] unless otherwise stated

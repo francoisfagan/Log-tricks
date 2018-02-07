@@ -3,7 +3,8 @@
 """
 import numpy as np
 from scipy.special import lambertw
-from scipy.optimize import newton
+# from implicit_cy import f1
+from scipy.optimize import brentq
 
 
 def error_log_loss(logits, y):
@@ -22,7 +23,7 @@ class SGD:
     def __init__(self, dim, num_classes, num_train_points):
         self.num_classes = num_classes
         self.W = np.zeros((dim, num_classes))  # Dimension: [num_classes] x [dim]
-        self.u = np.ones(num_train_points) * 0.0# np.log(num_classes)  # Dimension: [num_train_points]
+        self.u = np.ones(num_train_points) * 0.0  # np.log(num_classes)  # Dimension: [num_train_points]
 
     def update(self, x, y, idx, sampled_classes, learning_rate):
         """ Performs sgd update of variables
@@ -83,8 +84,6 @@ class VanillaSGD(SGD):
         logit_true = x_row.dot(self.W[:, y])[0, 0]  # Dimensions [1]
         logit_diff = logit_sampled - logit_true  # Dimensions [num_sampled]
 
-        # Update u. Unlike U-max, it does not have this step.
-
         # Gradient coefficients
         scaling = (self.num_classes - 1) / num_sampled
         coef = scaling * np.exp(logit_diff - self.u[idx])
@@ -111,7 +110,6 @@ class VanillaSGD(SGD):
 
         # Update true W
         self.W[x_col_idx, y] -= learning_rate * w_true_grad
-
 
 
 class Umax(SGD):
@@ -172,6 +170,7 @@ class tilde_Umax(SGD):
     """
     Alternative double sum formulation
     """
+
     def update(self, x, y, idx, sampled_classes, learning_rate):
         """
         The dimensions of the matrices below is [batch_size] x [num_classes] unless otherwise stated
@@ -200,7 +199,8 @@ class tilde_Umax(SGD):
 
         # SGD gradients
         u_grad = 1 - np.exp(coef_true) - np.sum(coef_sampled)  # Dimensions [1]
-        w_sample_grad = coef_sampled[x_row_idx, :] * x_val[:, None]  # Dimensions [non-zero entries in x] x [num_samples]
+        w_sample_grad = coef_sampled[x_row_idx, :] * x_val[:,
+                                                     None]  # Dimensions [non-zero entries in x] x [num_samples]
         w_true_grad = coef_true - 1  # Dimensions [non-zero entries in x]
         # https://stackoverflow.com/questions/5795700/multiply-numpy-array-of-scalars-by-array-of-vectors
 
@@ -228,46 +228,134 @@ class tilde_Umax(SGD):
 
 
 class Implicit(SGD):
+
+    def a(self, u_temp, multiplier):
+        """Returns solution to a as defined in the paper"""
+        diff = multiplier - u_temp
+        return robust_lambert_w_exp(diff)
+
+    def f1(self, u_temp, multiplier, x_norm, learning_rate, u_old):
+        """Zeroth derivative of u equation"""
+        a_temp = self.a(u_temp, multiplier)
+        return (2 * learning_rate
+                - 2 * learning_rate * np.exp(-u_temp)
+                - a_temp / (1 + a_temp) / x_norm
+                + 2 * (u_temp - u_old)
+                - a_temp ** 2 / (1 + a_temp) / x_norm
+                )
+
+    def update(self, x, y, idx, sampled_classes, learning_rate):
+        """
+        The dimensions of the matrices below is [batch_size] x [num_classes] unless otherwise stated
+        """
+
+        # Unpack the data
+        x_row, x_row_idx, x_col_idx, x_val = x
+
+        # Calculate values to feed into the f1 function
+        x_norm = x_val.dot(x_val)
+        x_dot_W = x_row.dot(self.W[:, sampled_classes] - self.W[:, y])[0, 0]
+        multiplier = (x_dot_W + np.log(2 * learning_rate * (self.num_classes - 1) * x_norm))
+
+        # Calculate upper and lower bounds for Brent's method
+
+        # small_argument = (x_dot_W - self.u[idx][0]) < 15
+        # if self.f1(self.u[idx], multiplier, x_norm, learning_rate, self.u[idx]) < 0:
+        #     bounds = (self.u[idx][0],
+        #               self.u[idx][0] - learning_rate
+        #               + (np.real(lambertw(learning_rate
+        #                                   * np.exp(learning_rate - self.u[idx][0])
+        #                                   * (1 + (self.num_classes - 1)
+        #                                      * np.exp(x_dot_W))))
+        #                  if small_argument else
+        #                  (np.log(learning_rate)
+        #                   + learning_rate - self.u[idx][0]
+        #                   + np.log(self.num_classes - 1)
+        #                   + x_dot_W)
+        #                  )
+        #               )
+        # else:
+        #     bounds = (max(0.0,
+        #                   self.u[idx][0] - learning_rate
+        #                   + np.real(lambertw(learning_rate
+        #                                      * np.exp(learning_rate - self.u[idx][0])
+        #                                      * (1 + (self.num_classes - 1)
+        #                                         * np.exp(x_dot_W - 2 * learning_rate * x_norm))))
+        #                   ),
+        #               self.u[idx][0]
+        #               )
+        if self.f1(self.u[idx], multiplier, x_norm, learning_rate, self.u[idx]) < 0:
+            bounds = (self.u[idx][0],
+                      np.log(1 + (self.num_classes - 1)
+                             * np.exp(x_dot_W))
+                      )
+        else:
+            bounds = (  # 0.0,
+                max(0.0,
+                    np.log(self.num_classes - 1)
+                    + x_dot_W
+                    - 2 * learning_rate * x_norm),
+                self.u[idx][0]
+            )
+
+        if (self.f1(bounds[0], multiplier, x_norm, learning_rate, self.u[idx])
+                * self.f1(bounds[1], multiplier, x_norm, learning_rate, self.u[idx])
+                > 0):
+            print('stop')
+
+        # Calculate optimal u and a values
+        u_optimal = 0
+        u_optimal = brentq(self.f1,
+                           bounds[0], bounds[1],
+                           args=(multiplier, x_norm, learning_rate, self.u[idx])
+                           )
+        a_optimal = self.a(u_optimal, multiplier)
+
+        # Update variables
+        self.u[idx] = max(0.0, u_optimal)
+        self.W[x_col_idx, sampled_classes] -= a_optimal * x_val / (2 * x_norm)
+        self.W[x_col_idx, y] += a_optimal * x_val / (2 * x_norm)
+
+
+def robust_lambert_w_exp(x):
+    # Returns lambert_w(exp(x))
+    if x > 15:
+        # Asymptotic expansion from equations (15-18) of
+        # http://mathworld.wolfram.com/LambertW-Function.html
+        L1 = x
+        L2 = np.log(x)
+        return (L1
+                - L2
+                + L2 / L1
+                + L2 * (-2 + L2) / (2 * L1 ** 2)
+                + L2 * (6 - 9 * L2 + 2 * L2 ** 2) / (6 * L1 ** 3)
+                + L2 * (-12 + 36 * L2 - 22 * L2 ** 2 + 3 * L2 ** 3) / (12 * L1 ** 4)
+                )
+    else:
+        return np.real(lambertw(np.exp(x)))
+
+
+class Implicit_simple(SGD):
+
     def update(self, x, y, idx, sampled_classes, learning_rate):
         """
         The dimensions of the matrices below is [batch_size] x [num_classes] unless otherwise stated
         """
         x_row, x_row_idx, x_col_idx, x_val = x
 
-        x_norm = x_val.dot(x_val)
-        multiplier = (x_row.dot(self.W[:, sampled_classes]) - x_row.dot(self.W[:, y])
-                      + np.log(2 * learning_rate * (self.num_classes - 1) * x_norm))[0, 0]
-
-        def a(u_temp):
-            diff = multiplier - u_temp
-            if diff < -15:
-                return 0
-            elif diff > 15:
-                return np.log(diff) - np.log(np.log(diff))
-            else:
-                return np.real(lambertw(np.exp(diff)))
-
-        def func(u_temp):
-            a_temp = a(u_temp)
-            return (2 * learning_rate
-                    - 2 * learning_rate * np.exp(-u_temp)
-                    - a_temp / (1 + a_temp) / x_norm
-                    + 2 * (u_temp - self.u[idx])
-                    - a_temp ** 2 / (1 + a_temp) / x_norm
-                    )
-
-        def fprime(u_temp):
-            a_temp = a(u_temp)
-            return (2 * learning_rate * np.exp(-u_temp)
-                    + a_temp / (1 + a_temp) ** 3 / x_norm
-                    + 2
-                    + a_temp ** 2 * (2 + a_temp) / (1 + a_temp) ** 3 / x_norm
-                    )
-
-        u_optimal = newton(func, max(self.u[idx], multiplier), fprime=fprime, maxiter=200)
-        a_optimal = a(u_optimal)
-
-        self.u[idx] = u_optimal
+        # Update u
+        t1 = learning_rate * np.exp(-self.u[idx][0] + learning_rate)
+        t2 = (x_row.dot(self.W[:, sampled_classes] - self.W[:, y]) - self.u[idx]
+              + learning_rate
+              + np.log(learning_rate * (self.num_classes - 1)))[0, 0]
+        log_b = np.log(t1 + np.exp(t2)) if t2 < 15 else t2
+        self.u[idx] = self.u[idx] - learning_rate + robust_lambert_w_exp(log_b)
         self.u[idx] = max(0.0, self.u[idx])
-        self.W[x_col_idx, sampled_classes] -= a_optimal * x_val / (2 * x_norm)
-        self.W[x_col_idx, y] += a_optimal * x_val / (2 * x_norm)
+
+        # Update w
+        x_norm = x_val.dot(x_val)
+        t = (x_row.dot(self.W[:, sampled_classes] - self.W[:, y])
+             + np.log(2 * learning_rate * (self.num_classes - 1) * x_norm))[0, 0]
+        a = robust_lambert_w_exp(t)
+        self.W[x_col_idx, sampled_classes] -= a * x_val / (2 * x_norm)
+        self.W[x_col_idx, y] += a * x_val / (2 * x_norm)
