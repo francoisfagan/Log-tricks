@@ -302,6 +302,10 @@ class Implicit(SGD):
                       self.u[idx][0]
                       )
 
+        # Avoid rounding errors
+        round_error = 1e-5
+        bounds = (bounds[0] - round_error, bounds[1] + round_error)
+
         # Calculate optimal u and a values
         u_optimal = brentq(self.f1,
                            bounds[0], bounds[1],

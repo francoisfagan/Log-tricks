@@ -11,13 +11,13 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 from pathlib import Path
 
-dataset_name = 'wiki10'  #'AmazonCat' #'Eurlex'  #'Delicious'  #'Bibtex'  #'mnist' #'wikiSmall'  #
-sgd_name = 'Umax'  # 'tilde_Umax'#'VanillaSGD' #'sampled_softmax'  # 'nce' #'ove' #'Implicit' #
+dataset_name = 'Eurlex'  #'wikiSmall'  #'wiki10'  #'AmazonCat' #'Delicious'  #'Bibtex'  #'mnist' #
+sgd_name = 'VanillaSGD' #'Umax'  #'sampled_softmax'  #'nce' #'ove' #'Implicit' # 'tilde_Umax'#
 # 'single_nce'#
 
 # Variations that may iterate over
-sgd_names = ['ove', 'nce', 'sampled_softmax', 'VanillaSGD', 'Umax', 'Implicit']  # , 'tilde_Umax'
-initial_learning_rates = [0.001, 0.0001]  # 1000000.0,, 0.00001,, 0.0001, 1000.0, 100.0, 10.0, 1.0, 0.1,
+sgd_names = ['ove', 'nce', 'sampled_softmax', 'VanillaSGD', 'Umax',  'Implicit']  # , 'tilde_Umax'
+initial_learning_rates = [100.0, 10.0, 1.0, 0.1, 0.01, 0.001]  # 1000000.0, 1000.0,, 0.00001
 
 # Default iterate values
 initial_learning_rate = 0.01
@@ -28,13 +28,13 @@ disp_train = True
 disp_test = False
 
 # Indicate whether to iterate on sgd or learning rate
-iterate_SGD_True_LR_False = True
+iterate_SGD_True_LR_False = False
 iterate_list = sgd_names if iterate_SGD_True_LR_False else initial_learning_rates
 
 # Set color spectrum of lines
 cmap = plt.get_cmap('jet_r')
 linewidth = 0.5
-figsize = (8, 8)  # Was (3, 3) for the plots in the main part of the paper
+figsize = (3, 3)  # Was (3, 3) for the plots in the main part of the paper, (8,8) for legend, (4,3) double sum
 
 # Plot both classification error and log-loss
 for error0_loss1 in [0, 1]:
@@ -53,7 +53,7 @@ for error0_loss1 in [0, 1]:
     with PdfPages(pdf_file_name) as pdf:
         plt.figure(figsize=figsize)
 
-        # for sgd_name in ['Umax', 'VanillaSGD']:  #  Use for double-sum plots
+        # for sgd_name in ['Umax', 'tilde_Umax']:  #  Use for double-sum plots
 
         # Iterate over variations
         # Record number of iterates that don't open a file
@@ -67,7 +67,7 @@ for error0_loss1 in [0, 1]:
                 initial_learning_rate = iterate
 
             # Set color
-            color_shift = 5
+            color_shift = 0 # 0 for double sum, 5 otherwise
             color = cmap((float(i) + color_shift) / (len(iterate_list) + color_shift))
 
             # Set learning rate if doing sgd
@@ -112,6 +112,9 @@ for error0_loss1 in [0, 1]:
                 path = './Results/Complete/Original/'
                 file_name_prefix = sgd_name + '_' + dataset_name + '_' + str(initial_learning_rate)
 
+            print(file_name_prefix)
+            print(path)
+
             # Extract the full file name
             matching_file_names = [filename for filename in os.listdir(path) if
                                    filename.startswith(file_name_prefix)]
@@ -149,19 +152,6 @@ for error0_loss1 in [0, 1]:
                         train_std = np.std(np.array(results[display][:, :, error0_loss1]), axis=0)[::2]
                         print(train_mean)
 
-
-                        if label == 'Implicit':
-                            p = plt.errorbar(epochs[::2],
-                                             train_mean[:len(epochs[::2])],
-                                             yerr=train_std[:len(epochs[::2])],
-                                             label='Implicit (lagged)',
-                                             ecolor=color,
-                                             color=color,
-                                             linestyle='solid',
-                                             marker=marker,
-                                             linewidth=linewidth,
-                                             )
-
                         p = plt.errorbar(epochs,
                                          train_mean,
                                          yerr=train_std,
@@ -176,12 +166,12 @@ for error0_loss1 in [0, 1]:
 
 
                         # Use code below for double-sum plots
-                        # # color = 'k'
-                        # # label = ('Raman et al.' if sgd_name == 'tilde_Umax' else 'Proposed')
-                        # p = plt.plot(epochs,  #
+                        # color = 'k'
+                        # label = ('Raman et al.' if sgd_name == 'tilde_Umax' else 'Proposed')
+                        # p = plt.semilogy(epochs,  #
                         #              train_mean,
                         #              # yerr=train_std,
-                        #              label=sgd_name + ' ' + str(initial_learning_rate),  # label,
+                        #              label=str(initial_learning_rate),  # label,sgd_name + ' ' +
                         #              # ecolor=color,
                         #              color=color,
                         #              # linestyle=('solid' if initial_learning_rate == 0.001 else 'dashed'),
@@ -227,8 +217,8 @@ for error0_loss1 in [0, 1]:
         # plt.title('Umax vs VanillaSGD')
 
         # plt.xlabel('Epochs')
-        plt.legend(loc='upper right')
-        plt.legend(loc=3, bbox_to_anchor=(1.05, 0.63))
+        # plt.legend(loc='upper right')
+        # plt.legend(loc=3, bbox_to_anchor=(1.05, 0.63))
 
         plt.tight_layout(pad=0.3)
 

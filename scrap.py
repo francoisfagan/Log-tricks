@@ -1,6 +1,16 @@
-# Avoid rounding errors
-round_error = 1e-5
-bounds = (bounds[0] - round_error, bounds[1] + round_error)
+if label == 'Implicit':
+    p = plt.errorbar(epochs[::2],
+                     train_mean[:len(epochs[::2])],
+                     yerr=train_std[:len(epochs[::2])],
+                     label='Implicit (lagged)',
+                     ecolor=color,
+                     color=color,
+                     linestyle='solid',
+                     marker=marker,
+                     linewidth=linewidth,
+                     )
+
+
 
 # if (self.f1(bounds[0], multiplier, x_norm, learning_rate, self.u[idx])
 #         * self.f1(bounds[1], multiplier, x_norm, learning_rate, self.u[idx])

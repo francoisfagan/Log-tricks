@@ -8,16 +8,16 @@ import sys
 import pickle
 
 # Parameters (in the future can pass these in from the command line)
-initial_learning_rate = 1000.0
+initial_learning_rate = 0.00001
 learning_rate_epoch_decrease = 0.9
 epochs = 50
 num_epochs_record = 20
 batch_size = 100  # For numpy methods batch_size = 1 always
 proportion_data = 1  # If =1 the use all of the data, else use a subset. For parameter tuning purposes.
-num_sampled = 5
+num_sampled = 1
 num_repeat = 1
-sgd_name = 'Implicit' #'VanillaSGD' #_simple
-dataset_name = 'Eurlex'
+sgd_name = 'VanillaSGD' #'Umax' #_simple
+dataset_name = 'Wiki10'
 custom_learning_rate = False  # Indicate to use custom optimal learning rate for Eurlex for each algorithm
 
 # Read in parameters if passed in from the command line
