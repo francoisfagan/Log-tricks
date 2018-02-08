@@ -2,45 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d932a138-bc3e-4836-89d0-79e375b2c988" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/convolve.pyx" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/implicit_cy.pyx" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/VanillaSGD_wiki10_lr_0.001_prop_data_1.0.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/sampled_softmax_Bibtex_lr_100.0_prop_data_1.0.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/sampled_softmax_wikiSmall_lr_0.001_prop_data_0.1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/sampled_softmax_wikiSmall_lr_0.01_prop_data_0.1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/sampled_softmax_wikiSmall_lr_0.1_prop_data_0.1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/sampled_softmax_wikiSmall_lr_1.0_prop_data_0.1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/sampled_softmax_wikiSmall_lr_10.0_prop_data_0.1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/sampled_softmax_wikiSmall_lr_100.0_prop_data_0.1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/sampled_softmax_wikiSmall_lr_1000.0_prop_data_0.1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/AmazonCat_custom_lr_error.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/AmazonCat_custom_lr_error.pdf" />
-      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/AmazonCat_custom_lr_loss.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/AmazonCat_custom_lr_loss.pdf" />
-      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Bibtex_custom_lr_error.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Bibtex_custom_lr_error.pdf" />
-      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Bibtex_custom_lr_loss.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Bibtex_custom_lr_loss.pdf" />
-      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Delicious_custom_lr_error.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Delicious_custom_lr_error.pdf" />
-      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Delicious_custom_lr_loss.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Delicious_custom_lr_loss.pdf" />
-      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Eurlex_custom_lr_error.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Eurlex_custom_lr_error.pdf" />
-      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Eurlex_custom_lr_loss.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/Eurlex_custom_lr_loss.pdf" />
-      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/mnist_custom_lr_error.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/mnist_custom_lr_error.pdf" />
-      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/mnist_custom_lr_loss.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/mnist_custom_lr_loss.pdf" />
-      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/wiki10_custom_lr_error.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/wiki10_custom_lr_error.pdf" />
-      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/wiki10_custom_lr_loss.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/wiki10_custom_lr_loss.pdf" />
-      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/wikiSmall_custom_lr_error.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/wikiSmall_custom_lr_error.pdf" />
-      <change beforePath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/wikiSmall_custom_lr_loss.pdf" afterPath="$PROJECT_DIR$/Results/Plots/Algorithm comparison/wikiSmall_custom_lr_loss.pdf" />
-      <change beforePath="$PROJECT_DIR$/implicit.sh" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/is.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Results/Implicit_mnist_lr_0.1_prop_data_1.p" afterPath="$PROJECT_DIR$/Results/Implicit_mnist_lr_0.1_prop_data_1.p" />
+      <change beforePath="$PROJECT_DIR$/build/temp.macosx-10.7-x86_64-3.6/implicit_cy.o" afterPath="$PROJECT_DIR$/build/temp.macosx-10.7-x86_64-3.6/implicit_cy.o" />
+      <change beforePath="$PROJECT_DIR$/implicit_cy.c" afterPath="$PROJECT_DIR$/implicit_cy.c" />
+      <change beforePath="$PROJECT_DIR$/implicit_cy.cpython-36m-darwin.so" afterPath="$PROJECT_DIR$/implicit_cy.cpython-36m-darwin.so" />
+      <change beforePath="$PROJECT_DIR$/implicit_cy.html" afterPath="$PROJECT_DIR$/implicit_cy.html" />
+      <change beforePath="$PROJECT_DIR$/implicit_cy.pyx" afterPath="$PROJECT_DIR$/implicit_cy.pyx" />
       <change beforePath="$PROJECT_DIR$/mnl.py" afterPath="$PROJECT_DIR$/mnl.py" />
-      <change beforePath="$PROJECT_DIR$/nce.sh" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/ove.sh" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/pipeline.py" afterPath="$PROJECT_DIR$/pipeline.py" />
-      <change beforePath="$PROJECT_DIR$/plot_results.py" afterPath="$PROJECT_DIR$/plot_results.py" />
-      <change beforePath="$PROJECT_DIR$/results_table.py" afterPath="$PROJECT_DIR$/results_table.py" />
-      <change beforePath="$PROJECT_DIR$/run.py" afterPath="$PROJECT_DIR$/run.py" />
       <change beforePath="$PROJECT_DIR$/scrap.py" afterPath="$PROJECT_DIR$/scrap.py" />
-      <change beforePath="$PROJECT_DIR$/tf.sh" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/umax.sh" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/vanilla.sh" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,8 +23,8 @@
       <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
+            <state relative-caret-position="289">
+              <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
               <folding>
                 <element signature="e#79#98#0" expanded="true" />
               </folding>
@@ -78,8 +47,8 @@
       <file leaf-file-name="mnl.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mnl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="286" column="40" lean-forward="false" selection-start-line="286" selection-start-column="40" selection-end-line="286" selection-end-column="40" />
+            <state relative-caret-position="782">
+              <caret line="248" column="71" lean-forward="true" selection-start-line="248" selection-start-column="71" selection-end-line="248" selection-end-column="71" />
               <folding>
                 <element signature="e#83#101#0" expanded="true" />
                 <element signature="e#237#686#0" expanded="false" />
@@ -88,7 +57,8 @@
                 <element signature="e#2694#4809#0" expanded="false" />
                 <element signature="e#4833#7436#0" expanded="false" />
                 <element signature="e#7466#10243#0" expanded="false" />
-                <element signature="e#14651#15702#0" expanded="false" />
+                <element signature="e#13931#14468#0" expanded="false" />
+                <element signature="e#14504#15555#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -97,8 +67,8 @@
       <file leaf-file-name="scrap.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scrap.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="71" selection-end-column="15" />
+            <state relative-caret-position="238">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -127,7 +97,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>average</find>
       <find>&quot;</find>
       <find>accuracy</find>
       <find>num_train_points</find>
@@ -157,6 +126,7 @@
       <find>num_sampled</find>
       <find>print</find>
       <find>self.f1</find>
+      <find>robust_lambert_w_exp</find>
     </findStrings>
     <replaceStrings>
       <replace>sampled_loss</replace>
@@ -205,9 +175,9 @@
         <option value="$PROJECT_DIR$/convolve.pyx" />
         <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/plot_results.py" />
-        <option value="$PROJECT_DIR$/scrap.py" />
-        <option value="$PROJECT_DIR$/implicit_cy.pyx" />
         <option value="$PROJECT_DIR$/pipeline.py" />
+        <option value="$PROJECT_DIR$/implicit_cy.pyx" />
+        <option value="$PROJECT_DIR$/scrap.py" />
         <option value="$PROJECT_DIR$/mnl.py" />
       </list>
     </option>
@@ -387,8 +357,8 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.pipeline" />
-        <item index="1" class="java.lang.String" itemvalue="Python.mnl" />
-        <item index="2" class="java.lang.String" itemvalue="Python.setup" />
+        <item index="1" class="java.lang.String" itemvalue="Python.setup" />
+        <item index="2" class="java.lang.String" itemvalue="Python.mnl" />
         <item index="3" class="java.lang.String" itemvalue="Python.plot_results" />
         <item index="4" class="java.lang.String" itemvalue="Python.plotting_mnist_data" />
       </list>
@@ -419,11 +389,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38414633" sideWeight="0.5029387" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2571138" sideWeight="0.49706128" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2571138" sideWeight="0.49706128" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36178863" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30995935" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -459,13 +429,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/mnl.py</url>
-          <line>303</line>
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-      </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
@@ -476,7 +439,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="49" />
+      <option name="time" value="51" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -537,7 +500,8 @@
             <element signature="e#2694#4809#0" expanded="false" />
             <element signature="e#4833#7436#0" expanded="false" />
             <element signature="e#7466#10243#0" expanded="false" />
-            <element signature="e#14651#15702#0" expanded="false" />
+            <element signature="e#13931#14468#0" expanded="false" />
+            <element signature="e#14504#15555#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -722,6 +686,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+          <folding>
+            <element signature="e#79#98#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/run.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="829">
@@ -732,44 +714,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="8" column="0" lean-forward="true" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/implicit_cy.pyx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="561">
+          <caret line="33" column="23" lean-forward="false" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scrap.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="45" column="0" lean-forward="true" selection-start-line="45" selection-start-column="0" selection-end-line="71" selection-end-column="15" />
+        <state relative-caret-position="238">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="27" lean-forward="false" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-          <folding>
-            <element signature="e#79#98#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mnl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="286" column="40" lean-forward="false" selection-start-line="286" selection-start-column="40" selection-end-line="286" selection-end-column="40" />
+        <state relative-caret-position="782">
+          <caret line="248" column="71" lean-forward="true" selection-start-line="248" selection-start-column="71" selection-end-line="248" selection-end-column="71" />
           <folding>
             <element signature="e#83#101#0" expanded="true" />
             <element signature="e#237#686#0" expanded="false" />
@@ -778,7 +742,8 @@
             <element signature="e#2694#4809#0" expanded="false" />
             <element signature="e#4833#7436#0" expanded="false" />
             <element signature="e#7466#10243#0" expanded="false" />
-            <element signature="e#14651#15702#0" expanded="false" />
+            <element signature="e#13931#14468#0" expanded="false" />
+            <element signature="e#14504#15555#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -236,7 +236,21 @@ class Implicit(SGD):
 
     def f1(self, u_temp, multiplier, x_norm, learning_rate, u_old):
         """Zeroth derivative of u equation"""
-        a_temp = self.a(u_temp, multiplier)
+        diff = multiplier - u_temp
+        if diff > 15:
+            # Asymptotic expansion from equations (15-18) of
+            # http://mathworld.wolfram.com/LambertW-Function.html
+            L1 = diff
+            L2 = np.log(diff)
+            a_temp = (L1
+                      - L2
+                      + L2 / L1
+                      + L2 * (-2 + L2) / (2 * L1 ** 2)
+                      + L2 * (6 - 9 * L2 + 2 * L2 ** 2) / (6 * L1 ** 3)
+                      + L2 * (-12 + 36 * L2 - 22 * L2 ** 2 + 3 * L2 ** 3) / (12 * L1 ** 4)
+                      )
+        else:
+            a_temp = np.real(lambertw(np.exp(diff))) #, tol=1e-5
         return (2 * learning_rate
                 - 2 * learning_rate * np.exp(-u_temp)
                 - a_temp / (1 + a_temp) / x_norm
@@ -258,56 +272,37 @@ class Implicit(SGD):
         multiplier = (x_dot_W + np.log(2 * learning_rate * (self.num_classes - 1) * x_norm))
 
         # Calculate upper and lower bounds for Brent's method
-
-        # small_argument = (x_dot_W - self.u[idx][0]) < 15
-        # if self.f1(self.u[idx], multiplier, x_norm, learning_rate, self.u[idx]) < 0:
-        #     bounds = (self.u[idx][0],
-        #               self.u[idx][0] - learning_rate
-        #               + (np.real(lambertw(learning_rate
-        #                                   * np.exp(learning_rate - self.u[idx][0])
-        #                                   * (1 + (self.num_classes - 1)
-        #                                      * np.exp(x_dot_W))))
-        #                  if small_argument else
-        #                  (np.log(learning_rate)
-        #                   + learning_rate - self.u[idx][0]
-        #                   + np.log(self.num_classes - 1)
-        #                   + x_dot_W)
-        #                  )
-        #               )
-        # else:
-        #     bounds = (max(0.0,
-        #                   self.u[idx][0] - learning_rate
-        #                   + np.real(lambertw(learning_rate
-        #                                      * np.exp(learning_rate - self.u[idx][0])
-        #                                      * (1 + (self.num_classes - 1)
-        #                                         * np.exp(x_dot_W - 2 * learning_rate * x_norm))))
-        #                   ),
-        #               self.u[idx][0]
-        #               )
+        small_argument = (x_dot_W - self.u[idx][0]) < 15
         if self.f1(self.u[idx], multiplier, x_norm, learning_rate, self.u[idx]) < 0:
             bounds = (self.u[idx][0],
-                      np.log(1 + (self.num_classes - 1)
-                             * np.exp(x_dot_W))
+                      self.u[idx][0] - learning_rate
+                      + (np.real(lambertw(learning_rate
+                                          * np.exp(learning_rate - self.u[idx][0])
+                                          * (1 + (self.num_classes - 1)
+                                             * np.exp(x_dot_W))))
+                         if small_argument else
+                         (np.log(learning_rate)
+                          + learning_rate - self.u[idx][0]
+                          + np.log(self.num_classes - 1)
+                          + x_dot_W)
+                         )
                       )
         else:
-            bounds = (  # 0.0,
-                max(0.0,
-                    np.log(self.num_classes - 1)
-                    + x_dot_W
-                    - 2 * learning_rate * x_norm),
-                self.u[idx][0]
-            )
-
-        if (self.f1(bounds[0], multiplier, x_norm, learning_rate, self.u[idx])
-                * self.f1(bounds[1], multiplier, x_norm, learning_rate, self.u[idx])
-                > 0):
-            print('stop')
+            bounds = (max(0.0,
+                          self.u[idx][0] - learning_rate
+                          + np.real(lambertw(learning_rate
+                                             * np.exp(learning_rate - self.u[idx][0])
+                                             * (1 + (self.num_classes - 1)
+                                                * np.exp(x_dot_W - 2 * learning_rate * x_norm))))
+                          ),
+                      self.u[idx][0]
+                      )
+        print(bounds[1] - bounds[0])
 
         # Calculate optimal u and a values
-        u_optimal = 0
         u_optimal = brentq(self.f1,
                            bounds[0], bounds[1],
-                           args=(multiplier, x_norm, learning_rate, self.u[idx])
+                           args=(multiplier, x_norm, learning_rate, self.u[idx]),
                            )
         a_optimal = self.a(u_optimal, multiplier)
 

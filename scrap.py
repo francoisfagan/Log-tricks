@@ -1,3 +1,49 @@
+# Avoid rounding errors
+round_error = 1e-5
+bounds = (bounds[0] - round_error, bounds[1] + round_error)
+
+# if (self.f1(bounds[0], multiplier, x_norm, learning_rate, self.u[idx])
+#         * self.f1(bounds[1], multiplier, x_norm, learning_rate, self.u[idx])
+#         > 0):
+#     print('stop')
+u_optimal = 0
+a_optimal = 0
+
+
+
+
+if (self.f1(bounds[0], multiplier, x_norm, learning_rate, self.u[idx])
+        * self.f1(bounds[1], multiplier, x_norm, learning_rate, self.u[idx])
+        > 0):
+    print('stop')
+
+    # def f1(self, u_temp, multiplier, x_norm, learning_rate, u_old):
+    #     """Zeroth derivative of u equation"""
+    #     a_temp = self.a(u_temp, multiplier)
+    #     return (2 * learning_rate
+    #             - 2 * learning_rate * np.exp(-u_temp)
+    #             - a_temp / (1 + a_temp) / x_norm
+    #             + 2 * (u_temp - u_old)
+    #             - a_temp ** 2 / (1 + a_temp) / x_norm
+    #             )
+
+# if f1(self.u[idx], multiplier, x_norm, learning_rate, self.u[idx]) < 0:
+#     bounds = (self.u[idx][0],
+#               np.log(1 + (self.num_classes - 1)
+#                      * np.exp(x_dot_W))
+#               )
+# else:
+#     bounds = (  # 0.0,
+#         max(0.0,
+#             np.log(self.num_classes - 1)
+#             + x_dot_W
+#             - 2 * learning_rate * x_norm),
+#         self.u[idx][0]
+#     )
+
+
+
+
 # Unpack the data
 x_row, x_row_idx, x_col_idx, x_val = x
 
