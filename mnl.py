@@ -271,6 +271,10 @@ class Implicit(SGD):
         x_dot_W = x_row.dot(self.W[:, sampled_classes] - self.W[:, y])[0, 0]
         multiplier = (x_dot_W + np.log(2 * learning_rate * (self.num_classes - 1) * x_norm))
 
+        # Default values for
+        u_optimal = 1.0
+        a_optimal = 1.0
+
         # Calculate upper and lower bounds for Brent's method
         small_argument = (x_dot_W - self.u[idx][0]) < 15
         if self.f1(self.u[idx], multiplier, x_norm, learning_rate, self.u[idx]) < 0:
@@ -297,7 +301,6 @@ class Implicit(SGD):
                           ),
                       self.u[idx][0]
                       )
-        print(bounds[1] - bounds[0])
 
         # Calculate optimal u and a values
         u_optimal = brentq(self.f1,

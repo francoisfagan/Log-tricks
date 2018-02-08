@@ -3,13 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d932a138-bc3e-4836-89d0-79e375b2c988" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/Results/Implicit_mnist_lr_0.1_prop_data_1.p" afterPath="$PROJECT_DIR$/Results/Implicit_mnist_lr_0.1_prop_data_1.p" />
-      <change beforePath="$PROJECT_DIR$/build/temp.macosx-10.7-x86_64-3.6/implicit_cy.o" afterPath="$PROJECT_DIR$/build/temp.macosx-10.7-x86_64-3.6/implicit_cy.o" />
-      <change beforePath="$PROJECT_DIR$/implicit_cy.c" afterPath="$PROJECT_DIR$/implicit_cy.c" />
-      <change beforePath="$PROJECT_DIR$/implicit_cy.cpython-36m-darwin.so" afterPath="$PROJECT_DIR$/implicit_cy.cpython-36m-darwin.so" />
-      <change beforePath="$PROJECT_DIR$/implicit_cy.html" afterPath="$PROJECT_DIR$/implicit_cy.html" />
-      <change beforePath="$PROJECT_DIR$/implicit_cy.pyx" afterPath="$PROJECT_DIR$/implicit_cy.pyx" />
       <change beforePath="$PROJECT_DIR$/mnl.py" afterPath="$PROJECT_DIR$/mnl.py" />
-      <change beforePath="$PROJECT_DIR$/scrap.py" afterPath="$PROJECT_DIR$/scrap.py" />
+      <change beforePath="$PROJECT_DIR$/pipeline.py" afterPath="$PROJECT_DIR$/pipeline.py" />
+      <change beforePath="$PROJECT_DIR$/run.py" afterPath="$PROJECT_DIR$/run.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
+            <state relative-caret-position="425">
+              <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
               <folding>
                 <element signature="e#79#98#0" expanded="true" />
               </folding>
@@ -35,8 +31,8 @@
       <file leaf-file-name="run.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="829">
-              <caret line="53" column="25" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+            <state relative-caret-position="515">
+              <caret line="53" column="48" lean-forward="true" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
               <folding>
                 <element signature="e#33#51#0" expanded="true" />
               </folding>
@@ -44,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mnl.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mnl.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mnl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="782">
-              <caret line="248" column="71" lean-forward="true" selection-start-line="248" selection-start-column="71" selection-end-line="248" selection-end-column="71" />
+            <state relative-caret-position="510">
+              <caret line="309" column="18" lean-forward="false" selection-start-line="277" selection-start-column="13" selection-end-line="309" selection-end-column="18" />
               <folding>
                 <element signature="e#83#101#0" expanded="true" />
                 <element signature="e#237#686#0" expanded="false" />
@@ -57,8 +53,8 @@
                 <element signature="e#2694#4809#0" expanded="false" />
                 <element signature="e#4833#7436#0" expanded="false" />
                 <element signature="e#7466#10243#0" expanded="false" />
-                <element signature="e#13931#14468#0" expanded="false" />
-                <element signature="e#14504#15555#0" expanded="false" />
+                <element signature="e#13972#14509#0" expanded="false" />
+                <element signature="e#14545#15596#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -173,12 +169,12 @@
         <option value="$PROJECT_DIR$/vanilla.sh" />
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/convolve.pyx" />
-        <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/plot_results.py" />
-        <option value="$PROJECT_DIR$/pipeline.py" />
         <option value="$PROJECT_DIR$/implicit_cy.pyx" />
         <option value="$PROJECT_DIR$/scrap.py" />
+        <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/mnl.py" />
+        <option value="$PROJECT_DIR$/pipeline.py" />
       </list>
     </option>
   </component>
@@ -389,7 +385,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38414633" sideWeight="0.5029387" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2571138" sideWeight="0.49706128" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2571138" sideWeight="0.49706128" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -500,8 +496,8 @@
             <element signature="e#2694#4809#0" expanded="false" />
             <element signature="e#4833#7436#0" expanded="false" />
             <element signature="e#7466#10243#0" expanded="false" />
-            <element signature="e#13931#14468#0" expanded="false" />
-            <element signature="e#14504#15555#0" expanded="false" />
+            <element signature="e#13972#14509#0" expanded="false" />
+            <element signature="e#14545#15596#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -694,26 +690,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-          <folding>
-            <element signature="e#79#98#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="829">
-          <caret line="53" column="25" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding>
-            <element signature="e#33#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/implicit_cy.pyx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
@@ -730,10 +706,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="53" column="48" lean-forward="true" selection-start-line="53" selection-start-column="48" selection-end-line="53" selection-end-column="48" />
+          <folding>
+            <element signature="e#33#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/mnl.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="248" column="71" lean-forward="true" selection-start-line="248" selection-start-column="71" selection-end-line="248" selection-end-column="71" />
+        <state relative-caret-position="510">
+          <caret line="309" column="18" lean-forward="false" selection-start-line="277" selection-start-column="13" selection-end-line="309" selection-end-column="18" />
           <folding>
             <element signature="e#83#101#0" expanded="true" />
             <element signature="e#237#686#0" expanded="false" />
@@ -742,8 +728,18 @@
             <element signature="e#2694#4809#0" expanded="false" />
             <element signature="e#4833#7436#0" expanded="false" />
             <element signature="e#7466#10243#0" expanded="false" />
-            <element signature="e#13931#14468#0" expanded="false" />
-            <element signature="e#14504#15555#0" expanded="false" />
+            <element signature="e#13972#14509#0" expanded="false" />
+            <element signature="e#14545#15596#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+          <folding>
+            <element signature="e#79#98#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -48,9 +48,11 @@ def run(dataset_name,
 
     # Set the number of batches per epoch
     num_batches = num_train_points // batch_size
+
     # Since 'Implicit' has a sample size of 1, have more batches if 'Implicit'
     # Number dot products if not implicit divided by if implicit = (num_sampled + 1) / 2
-    num_batches = int(num_batches * ((num_sampled + 1) / 2 if sgd_name == 'Implicit' else 1.0))
+    # num_batches = int(num_batches * ((num_sampled + 1) / 2 if sgd_name == 'Implicit' else 1.0))
+
     # If only using a fraction of the data, decrease the num_batches per epoch
     num_batches = int(num_batches * proportion_data)
 
