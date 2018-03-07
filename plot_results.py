@@ -11,12 +11,12 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 from pathlib import Path
 
-dataset_name = 'Eurlex'  #'wikiSmall'  #'wiki10'  #'AmazonCat' #'Delicious'  #'Bibtex'  #'mnist' #
-sgd_name = 'VanillaSGD' #'Umax'  #'sampled_softmax'  #'nce' #'ove' #'Implicit' # 'tilde_Umax'#
+dataset_name = 'Eurlex'  #'wikiSmall'  #'AmazonCat' #'mnist' #'Delicious'  #'Bibtex'  #'wiki10'  #
+sgd_name = 'Umax'  #'sampled_softmax'  #'nce' #'ove' #'Implicit' #'VanillaSGD'  #  'tilde_Umax'#
 # 'single_nce'#
 
 # Variations that may iterate over
-sgd_names = ['ove', 'nce', 'sampled_softmax', 'VanillaSGD', 'Umax',  'Implicit']  # , 'tilde_Umax'
+sgd_names = ['ove', 'nce', 'sampled_softmax', 'VanillaSGD', 'Umax', 'Implicit']  # , 'tilde_Umax'
 initial_learning_rates = [100.0, 10.0, 1.0, 0.1, 0.01, 0.001]  # 1000000.0, 1000.0,, 0.00001
 
 # Default iterate values
@@ -30,11 +30,12 @@ disp_test = False
 # Indicate whether to iterate on sgd or learning rate
 iterate_SGD_True_LR_False = False
 iterate_list = sgd_names if iterate_SGD_True_LR_False else initial_learning_rates
+long_epochs = False
 
 # Set color spectrum of lines
 cmap = plt.get_cmap('jet_r')
 linewidth = 0.5
-figsize = (3, 3)  # Was (3, 3) for the plots in the main part of the paper, (8,8) for legend, (4,3) double sum
+figsize = (3, 2)  # Was (3, 3) for the plots in the main part of the paper, (8,8) for legend, (4,3) double sum
 
 # Plot both classification error and log-loss
 for error0_loss1 in [0, 1]:
@@ -44,9 +45,9 @@ for error0_loss1 in [0, 1]:
     pdf_file_name = ('./Results/Plots/'
                      + dataset_name + '_'
                      + ((str(initial_learning_rate) if iterate_SGD_True_LR_False else sgd_name)
-            if not iterate_SGD_True_LR_False else 'custom_lr')
-                     + '_'
+                        if not iterate_SGD_True_LR_False else 'custom_lr') + '_'
                      + ('loss' if error0_loss1 else 'error')
+                     + ('_runtime' if long_epochs else '')
                      + '.pdf')
 
     # Open figure to be saved as pdf
@@ -67,7 +68,7 @@ for error0_loss1 in [0, 1]:
                 initial_learning_rate = iterate
 
             # Set color
-            color_shift = 0 # 0 for double sum, 5 otherwise
+            color_shift = 0  # 0 for double sum, 5 otherwise
             color = cmap((float(i) + color_shift) / (len(iterate_list) + color_shift))
 
             # Set learning rate if doing sgd
@@ -104,11 +105,13 @@ for error0_loss1 in [0, 1]:
             if iterate_SGD_True_LR_False:
                 path = './Results/Complete/Tuned/'
                 file_name_prefix = sgd_name + '_' + dataset_name
+                if long_epochs and sgd_name in {'Implicit'}: #, 'Umax'
+                    path = './Results/Complete/Long_epochs/'
             else:
                 path = './Results/Complete/Tuning/'
                 file_name_prefix = sgd_name + '_' + dataset_name + '_lr_' + str(initial_learning_rate)
 
-            if dataset_name == 'Eurlex' and sgd_name in {'Umax', 'tilde_Umax'}:
+            if dataset_name == 'Eurlex':
                 path = './Results/Complete/Original/'
                 file_name_prefix = sgd_name + '_' + dataset_name + '_' + str(initial_learning_rate)
 
@@ -152,7 +155,7 @@ for error0_loss1 in [0, 1]:
                         train_std = np.std(np.array(results[display][:, :, error0_loss1]), axis=0)[::2]
                         print(train_mean)
 
-                        p = plt.errorbar(epochs,
+                        p = plt.errorbar(np.linspace(1,50,len(train_mean)),  # epochs
                                          train_mean,
                                          yerr=train_std,
                                          label=label,
@@ -163,7 +166,6 @@ for error0_loss1 in [0, 1]:
                                          linewidth=linewidth,
                                          markerfacecolor='none'
                                          )
-
 
                         # Use code below for double-sum plots
                         # color = 'k'
@@ -204,6 +206,8 @@ for error0_loss1 in [0, 1]:
                 plt.title('IS')
             elif sgd_name == 'Umax':
                 plt.title('U-max')
+            elif sgd_name == 'VanillaSGD':
+                plt.title('Vanilla')
             elif sgd_name == 'tilde_Umax':
                 plt.title('U-max (Raman)')
             elif sgd_name == 'nce':

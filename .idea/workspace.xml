@@ -2,43 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d932a138-bc3e-4836-89d0-79e375b2c988" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/pipelineVanilla.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Old_bash_scripts/implicit.sh" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Old_bash_scripts/umax.sh" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Old_bash_scripts/vanilla.sh" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Old_bash_scripts/implicit.sh" afterPath="$PROJECT_DIR$/implicit.sh" />
-      <change beforePath="$PROJECT_DIR$/Old_bash_scripts/umax.sh" afterPath="$PROJECT_DIR$/umax.sh" />
-      <change beforePath="$PROJECT_DIR$/Old_bash_scripts/vanilla.sh" afterPath="$PROJECT_DIR$/vanilla.sh" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/Implicit_AmazonCat_lr_0.001_prop_data_1.0.p" afterPath="$PROJECT_DIR$/Results/Complete/Tuned/Implicit_AmazonCat_lr_0.001_prop_data_1.0.p" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/Implicit_Bibtex_lr_10.0_prop_data_1.0.p" afterPath="$PROJECT_DIR$/Results/Complete/Tuned/Implicit_Bibtex_lr_10.0_prop_data_1.0.p" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/Implicit_Delicious_lr_0.01_prop_data_1.0.p" afterPath="$PROJECT_DIR$/Results/Complete/Tuned/Implicit_Delicious_lr_0.01_prop_data_1.0.p" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/Implicit_Eurlex_1.0.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/Implicit_mnist_lr_0.1_prop_data_1.0.p" afterPath="$PROJECT_DIR$/Results/Complete/Tuned/Implicit_mnist_lr_0.1_prop_data_1.0.p" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/Implicit_wiki10_lr_1.0_prop_data_1.0.p" afterPath="$PROJECT_DIR$/Results/Complete/Tuned/Implicit_wiki10_lr_1.0_prop_data_1.0.p" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/Implicit_wikiSmall_lr_0.001_prop_data_1.0.p" afterPath="$PROJECT_DIR$/Results/Complete/Tuned/Implicit_wikiSmall_lr_0.001_prop_data_1.0.p" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/Umax_AmazonCat_lr_0.01_prop_data_1.0.p" afterPath="$PROJECT_DIR$/Results/Complete/Tuned/Umax_AmazonCat_lr_0.01_prop_data_1.0.p" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/Umax_Bibtex_lr_0.1_prop_data_1.0.p" afterPath="$PROJECT_DIR$/Results/Complete/Tuned/Umax_Bibtex_lr_0.1_prop_data_1.0.p" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/Umax_Delicious_lr_0.01_prop_data_1.0.p" afterPath="$PROJECT_DIR$/Results/Complete/Tuned/Umax_Delicious_lr_0.01_prop_data_1.0.p" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/Umax_Eurlex_0.1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/Umax_mnist_lr_10.0_prop_data_1.0.p" afterPath="$PROJECT_DIR$/Results/Complete/Tuned/Umax_mnist_lr_10.0_prop_data_1.0.p" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/Umax_wiki10_lr_0.01_prop_data_1.0.p" afterPath="$PROJECT_DIR$/Results/Complete/Tuned/Umax_wiki10_lr_0.01_prop_data_1.0.p" />
-      <change beforePath="$PROJECT_DIR$/Results/Complete/Tuned/Umax_wikiSmall_lr_0.001_prop_data_1.0.p" afterPath="$PROJECT_DIR$/Results/Complete/Tuned/Umax_wikiSmall_lr_0.001_prop_data_1.0.p" />
-      <change beforePath="$PROJECT_DIR$/Results/Implicit_Bibtex_lr_10.0_prop_data_1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Implicit_Bibtex_lr_100.0_prop_data_1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Implicit_Bibtex_lr_1e-05_prop_data_1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Implicit_Delicious_lr_10.0_prop_data_1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Implicit_Wiki10_lr_1e-05_prop_data_1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Implicit_mnist_lr_0.1_prop_data_1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Implicit_mnist_lr_10.0_prop_data_1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Implicit_mnist_lr_1e-05_prop_data_1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Plots/wiki10_custom_lr_error.pdf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/Plots/wiki10_custom_lr_loss.pdf" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/VanillaSGD_Bibtex_lr_1e-05_prop_data_1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/VanillaSGD_Wiki10_lr_1e-05_prop_data_1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/VanillaSGD_mnist_lr_0.1_prop_data_1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Results/VanillaSGD_mnist_lr_1e-05_prop_data_1.p" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/mnl.py" afterPath="$PROJECT_DIR$/mnl.py" />
+      <change beforePath="$PROJECT_DIR$/Implicit_illustration.py" afterPath="$PROJECT_DIR$/Implicit_illustration.py" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Eurlex_Umax_loss.pdf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Eurlex_VanillaSGD_error.pdf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Eurlex_VanillaSGD_loss.pdf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Results/Plots/Eurlex_tilde_Umax_loss.pdf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/implicit.sh" afterPath="" />
       <change beforePath="$PROJECT_DIR$/pipeline.py" afterPath="$PROJECT_DIR$/pipeline.py" />
       <change beforePath="$PROJECT_DIR$/plot_results.py" afterPath="$PROJECT_DIR$/plot_results.py" />
-      <change beforePath="$PROJECT_DIR$/scrap.py" afterPath="$PROJECT_DIR$/scrap.py" />
+      <change beforePath="$PROJECT_DIR$/run.py" afterPath="$PROJECT_DIR$/run.py" />
+      <change beforePath="$PROJECT_DIR$/umax.sh" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/vanilla.sh" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -49,14 +27,66 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="pipeline.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pipeline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="26" column="44" lean-forward="false" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
               <folding>
                 <element signature="e#79#98#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="run.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/run.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2176">
+              <caret line="140" column="36" lean-forward="false" selection-start-line="140" selection-start-column="36" selection-end-line="140" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="implicit.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Old_bash_scripts/implicit.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="48" lean-forward="false" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="umax.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Old_bash_scripts/umax.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="plot_results.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plot_results.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="421">
+              <caret line="54" column="35" lean-forward="true" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="35" />
+              <folding>
+                <element signature="e#44#57#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Implicit_illustration.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Implicit_illustration.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -130,10 +160,8 @@
         <option value="$PROJECT_DIR$/load.py" />
         <option value="$PROJECT_DIR$/tf_pipeline.py" />
         <option value="$PROJECT_DIR$/tf_run.py" />
-        <option value="$PROJECT_DIR$/Implicit_illustration.py" />
         <option value="$PROJECT_DIR$/load_data.py" />
         <option value="$PROJECT_DIR$/tf_load_data.py" />
-        <option value="$PROJECT_DIR$/umax.sh" />
         <option value="$PROJECT_DIR$/nce.sh" />
         <option value="$PROJECT_DIR$/ove.sh" />
         <option value="$PROJECT_DIR$/is.sh" />
@@ -146,22 +174,25 @@
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/convolve.pyx" />
         <option value="$PROJECT_DIR$/implicit_cy.pyx" />
-        <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/pipelineVanilla.py" />
-        <option value="$PROJECT_DIR$/vanilla.sh" />
         <option value="$PROJECT_DIR$/scrap.py" />
-        <option value="$PROJECT_DIR$/pipeline.py" />
         <option value="$PROJECT_DIR$/mnl.py" />
-        <option value="$PROJECT_DIR$/implicit.sh" />
         <option value="$PROJECT_DIR$/results_table.py" />
+        <option value="$PROJECT_DIR$/implicit.sh" />
+        <option value="$PROJECT_DIR$/umax.sh" />
+        <option value="$PROJECT_DIR$/vanilla.sh" />
+        <option value="$PROJECT_DIR$/pipeline.py" />
+        <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/plot_results.py" />
+        <option value="$PROJECT_DIR$/Implicit_illustration.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
+    <option name="x" value="44" />
     <option name="y" value="23" />
-    <option name="width" value="1249" />
-    <option name="height" value="1057" />
+    <option name="width" value="1394" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -200,6 +231,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -207,16 +239,10 @@
               <item name="log_tricks" type="b2602c69:ProjectViewProjectNode" />
               <item name="log_tricks" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="log_tricks" type="b2602c69:ProjectViewProjectNode" />
-              <item name="log_tricks" type="462c0819:PsiDirectoryNode" />
-              <item name="Old_bash_scripts" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -226,6 +252,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Old_bash_scripts" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -241,8 +268,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.plot_results">
-    <configuration name="mnl" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.Implicit_illustration">
+    <configuration name="Implicit_illustration" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -254,7 +281,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="softmax_tf" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mnl.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Implicit_illustration.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -335,17 +362,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.pipeline" />
       <item index="1" class="java.lang.String" itemvalue="Python.plot_results" />
-      <item index="2" class="java.lang.String" itemvalue="Python.mnl" />
-      <item index="3" class="java.lang.String" itemvalue="Python.setup" />
-      <item index="4" class="java.lang.String" itemvalue="Python.results_table" />
+      <item index="2" class="java.lang.String" itemvalue="Python.setup" />
+      <item index="3" class="java.lang.String" itemvalue="Python.results_table" />
+      <item index="4" class="java.lang.String" itemvalue="Python.Implicit_illustration" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.plot_results" />
-        <item index="1" class="java.lang.String" itemvalue="Python.results_table" />
+        <item index="0" class="java.lang.String" itemvalue="Python.Implicit_illustration" />
+        <item index="1" class="java.lang.String" itemvalue="Python.plot_results" />
         <item index="2" class="java.lang.String" itemvalue="Python.pipeline" />
-        <item index="3" class="java.lang.String" itemvalue="Python.setup" />
-        <item index="4" class="java.lang.String" itemvalue="Python.mnl" />
+        <item index="3" class="java.lang.String" itemvalue="Python.results_table" />
+        <item index="4" class="java.lang.String" itemvalue="Python.setup" />
       </list>
     </recent_temporary>
   </component>
@@ -366,19 +393,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1249" height="1057" extended-state="0" />
+    <frame x="44" y="23" width="1394" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.142514" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19225252" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38414633" sideWeight="0.5029387" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31878173" sideWeight="0.49706128" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31979695" sideWeight="0.49706128" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30931678" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -503,13 +530,6 @@
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py" />
-    <entry file="file://$PROJECT_DIR$/Implicit_illustration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="27" lean-forward="false" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/is.sh" />
     <entry file="file://$PROJECT_DIR$/nce.sh" />
     <entry file="file://$PROJECT_DIR$/ove.sh" />
@@ -535,18 +555,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tf.sh" />
-    <entry file="file://$PROJECT_DIR$/umax.sh" />
+    <entry file="file://$PROJECT_DIR$/Old_bash_scripts/umax.sh" />
     <entry file="file://$PROJECT_DIR$/run_pipeline.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="12" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/load_data.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="67" lean-forward="false" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
         </state>
       </provider>
     </entry>
@@ -599,14 +612,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/implicit.sh">
+    <entry file="file://$PROJECT_DIR$/Old_bash_scripts/implicit.sh">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="38" lean-forward="false" selection-start-line="8" selection-start-column="38" selection-end-line="8" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vanilla.sh" />
+    <entry file="file://$PROJECT_DIR$/Old_bash_scripts/vanilla.sh" />
     <entry file="file://$PROJECT_DIR$/convolve.pyx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -629,20 +642,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/umax.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vanilla.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="53" lean-forward="true" selection-start-line="17" selection-start-column="53" selection-end-line="17" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pipelineVanilla.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -650,24 +649,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="46" column="18" lean-forward="false" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
           <caret line="1661" column="0" lean-forward="false" selection-start-line="1661" selection-start-column="0" selection-end-line="1661" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/implicit.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="24" lean-forward="false" selection-start-line="3" selection-start-column="23" selection-end-line="4" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -689,27 +674,73 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="5" column="28" lean-forward="false" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Old_bash_scripts/implicit.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="48" lean-forward="false" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pipeline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="26" column="44" lean-forward="false" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+          <folding>
+            <element signature="e#79#98#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2176">
+          <caret line="140" column="36" lean-forward="false" selection-start-line="140" selection-start-column="36" selection-end-line="140" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Old_bash_scripts/vanilla.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="50" lean-forward="false" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/load_data.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="67" lean-forward="false" selection-start-line="15" selection-start-column="67" selection-end-line="15" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Old_bash_scripts/umax.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/plot_results.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="31" column="76" lean-forward="false" selection-start-line="31" selection-start-column="76" selection-end-line="31" selection-end-column="76" />
+        <state relative-caret-position="421">
+          <caret line="54" column="35" lean-forward="true" selection-start-line="54" selection-start-column="8" selection-end-line="54" selection-end-column="35" />
           <folding>
             <element signature="e#44#57#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline.py">
+    <entry file="file://$PROJECT_DIR$/Implicit_illustration.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="e#79#98#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="136">
+          <caret line="8" column="37" lean-forward="false" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>

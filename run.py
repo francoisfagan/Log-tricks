@@ -137,7 +137,7 @@ def run(dataset_name,
                                        )
 
                 # Record and display loss once each epoch
-                if (epoch + 1) % (epochs // num_epochs_record) == 0:
+                if epoch in {int(x) for x in np.linspace(1, epochs, num_epochs_record)}:
                     if tf_indicator:
                         train_error[-1].append(error(x, y_one_hot, W, b, train, num_classes))
                         test_error[-1].append(error(x, y_one_hot, W, b, test, num_classes))
